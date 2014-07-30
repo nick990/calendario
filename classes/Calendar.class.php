@@ -63,7 +63,7 @@ class Calendar{
 	  */
 	  function stampa(){	
 	
-		//$this->stampaSwitchMese();
+		$this->stampaSwitchMese();
 		
 	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
 	  	
