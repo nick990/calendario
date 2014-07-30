@@ -9,5 +9,4 @@
 .calendar_container{
 	width: <?php echo $WIDTH_CALENDAR_CONTAINER; ?>;
 	height: <?php echo $HEIGHT_CALENDAR_CONTAINER; ?>;
-	background-color:red;
 }
