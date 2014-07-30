@@ -1,4 +1,4 @@
-<script type="text/javascript" src="js/calendario.js"> </script>
+
 <?php
 class Calendar{	
 	private $mese;
@@ -18,6 +18,11 @@ class Calendar{
 	 * Se omessi usa quelli correnti
 	 */
 	 function __construct($mese="",$anno=""){
+	 	/*
+		 * Opening DB connession
+		 */
+		 require_once('/opt/lampp/htdocs/calendario3/php/DBfunctions.php');
+		 connettiDB("127.0.0.1","calendario_db","root","");
 	 	if(empty($mese)||empty($anno)){
 	 		$now=getdate();
 			$mese=$now['mon'];
@@ -30,7 +35,7 @@ class Calendar{
 		$this->giorni_mese = cal_days_in_month(CAL_GREGORIAN,$this->mese,$this->anno);
 		//Costruisco l'array dei giorni con i solo giorni del mese
 		for($gg=1;$gg<=$this->giorni_mese;$gg++){
-			$this->giorni[]=new Giorno($gg,$this->mese,$this->anno);
+			$this->giorni[]=new Day($gg,$this->mese,$this->anno);
 		}
 		
 	
@@ -58,7 +63,7 @@ class Calendar{
 	  */
 	  function stampa(){	
 	
-		$this->stampaSwitchMese();
+		//$this->stampaSwitchMese();
 		
 	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
 	  	

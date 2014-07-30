@@ -42,7 +42,7 @@ class Day{
 		$result = mysql_query($query);
 		while ($array = mysql_fetch_array($result))
 		{
-			$newEvento=new Evento($array['id'],$array['data_inizio'],$array['data_fine'],$array['nome'],$array['descrizione'],$array['tipo']);
+			$newEvento=new Event($array['id'],$array['data_inizio'],$array['data_fine'],$array['nome'],$array['descrizione'],$array['tipo']);
 			$this->eventi[]=$newEvento;
 		}
 	}
@@ -54,7 +54,7 @@ class Day{
 	 	$ts=mktime(0,0,0,$this->data['mon'],$this->data['mday'],$this->data['year']);
 		$ts=strtotime('-1 day', $ts);
 		$newData=getdate($ts);
-		return new Giorno($newData['mday'],$newData['mon'],$newData['year']);
+		return new Day($newData['mday'],$newData['mon'],$newData['year']);
 	 }
 	 
 	  /*
@@ -64,7 +64,7 @@ class Day{
 	 	$ts=mktime(0,0,0,$this->data['mon'],$this->data['mday'],$this->data['year']);
 		$ts=strtotime('+1 day', $ts);
 		$newData=getdate($ts);
-		return new Giorno($newData['mday'],$newData['mon'],$newData['year']);
+		return new Day($newData['mday'],$newData['mon'],$newData['year']);
 	 }
 }
 ?>
