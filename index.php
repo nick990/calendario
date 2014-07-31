@@ -8,7 +8,7 @@
 	<body>
 		<div class="calendar_container"></div>
 		<script type="text/javascript">
-			getCalendar(7,2014);
+			getCalendar();
 		</script>
 	</body>
 </html>

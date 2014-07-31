@@ -20,7 +20,10 @@ class Day{
 	 	echo '<div class="number">';
 	 	echo $this->data['mday'];
 		echo '</div>';
-		echo '<div class="events">';
+		if(count($this->eventi)>4)
+			echo '<div class="events_scroll">';
+		else
+			echo '<div class="events">';
 		if(count($this->eventi)!=0)
 			foreach ($this->eventi as $evento) {
 			//	echo '<div class="evento">';

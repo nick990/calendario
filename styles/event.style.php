@@ -3,19 +3,23 @@
 	require("/opt/lampp/htdocs/calendario3/config.php");
 ?>
 
-.event,.daily_event{   
-	padding:3px;
+.event,.daily_event{ 
+	
+	
+	
 	padding-left:5px;
 	
 	font-size:11px;
 	
 	width:<?php echo $WIDTH_EVENT; ?>;
+	height:<?php echo $HEIGHT_EVENT; ?>;
+	line-height:<?php echo $LINE_HEIGHT_EVENT; ?>;
 	margin:auto;
 	margin-top:5px;
 	text-overflow:ellipsis;
 	white-space: nowrap;	
 	
-	overflow-x: hidden;
+	overflow: hidden;
 }
 .event {
 	padding:0px;
