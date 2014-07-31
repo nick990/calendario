@@ -17,10 +17,11 @@ class Day{
 	  * stampo 'mday'
 	  */
 	 function stampa(){
+	 	require("/opt/lampp/htdocs/calendario3/config.php");
 	 	echo '<div class="number">';
 	 	echo $this->data['mday'];
 		echo '</div>';
-		if(count($this->eventi)>4)
+		if(count($this->eventi)>$MAX_EVENT)
 			echo '<div class="events_scroll">';
 		else
 			echo '<div class="events">';

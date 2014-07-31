@@ -1,4 +1,7 @@
 <?php
+	//Numero massimo di eventi visualizzabili in events, oltre events diventa events_scroll con la barra di scorrimento dell'overflow verticale
+	$MAX_EVENT=4;
+
 	$WIDTH_CALENDAR_CONTAINER=900;
 	$HEIGHT_CALENDAR_CONTAINER=700;
 	
@@ -23,7 +26,7 @@
 	 * Tolgo alla dimensione del giorno il padding dell'evento
 	 */
 	$WIDTH_EVENT=$WIDTH_DAY-14;
-	$HEIGHT_EVENT=($HEIGHT_DAY-30)/4-7;
+	$HEIGHT_EVENT=($HEIGHT_DAY-30)/$MAX_EVENT-7;
 	$LINE_HEIGHT_EVENT=$HEIGHT_EVENT."px";
 	
 ?>

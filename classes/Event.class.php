@@ -36,12 +36,12 @@ class Event{
 		echo '<div class="event" id="evento'.$this->id.'">';
 			$ora_inizio_format=date('H:i',$this->data_inizio_ts);
 			$ora_fine_format=date('H:i',$this->data_fine_ts);
-			echo '<b>'.$ora_inizio_format.' - './*$ora_fine_format.*/' </b><a href="javascript:creaPopup('.$this->id.')">'.$this->nome.'</a>';
+			echo '<b>'.$ora_inizio_format.' - './*$ora_fine_format.*/' </b><a href="javascript:popupEventById('.$this->id.')">'.$this->nome.'</a>';
 		echo '</div>';
 	}
 	function StampaGiornaliero(){
 		echo '<div class="daily_event" id="evento'.$this->id.'">';
-		echo '<a href="javascript:creaPopup('.$this->id.')">'.$this->nome.'</a>';
+		echo '<a href="javascript:popupEventById('.$this->id.')">'.$this->nome.'</a>';
 		echo '</div>';
 	}
 }

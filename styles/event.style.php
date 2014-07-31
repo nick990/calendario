@@ -3,10 +3,7 @@
 	require("/opt/lampp/htdocs/calendario3/config.php");
 ?>
 
-.event,.daily_event{ 
-	
-	
-	
+.event,.daily_event{ 	
 	padding-left:5px;
 	
 	font-size:11px;
