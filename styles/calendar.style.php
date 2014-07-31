@@ -13,7 +13,7 @@
 	position:relative;
 	font-family:Arial, Helvetica, sans-serif;
 	display: inline-block;
-	
+	//background-color:red;
 	
 }
 table.calendar_table{	
@@ -52,4 +52,24 @@ table.calendar_table tr.heading_tr td{
 	width:100%;
 	height:100%;	
 	overflow:hidden;
+}
+
+.switch{
+	height:<?php echo $HEIGHT_SWITCH; ?>;
+	line-height:<?php echo $HEIGHT_SWITCH."px"; ?>;
+	
+	//background-color:#eef4ed;
+}
+
+.switch .prev,.switch .next{
+	/*width:30px;
+	height:30px;
+*/	float:left;
+	cursor: pointer; cursor: hand;
+	}
+
+.switch .date{
+	float:left;
+	//width:150px;
+	text-align:left;
 }

@@ -119,10 +119,10 @@ class Calendar{
 	    */
 	   private function stampaSwitchMese(){
 	   	global $mesi_completi;
-	   	echo "<div class='switch_mese'>";
-	   		echo "<div class='prec' onclick=\"javascript:stampaCalendarioPrec($this->mese,$this->anno)\"><img src='style/images_switch/prev.png'></div>";
-	   		echo "<div class='data'>".$mesi_completi[$this->mese-1]." ".$this->anno."</div>";
-	   		echo "<div class='succ' onclick=\"javascript:stampaCalendarioSucc($this->mese,$this->anno)\"><img src='style/images_switch/next.png'></div>";
+	   	echo "<div class='switch'>";
+	   		echo "<div class='prev' onclick=\"javascript:getPrevCalendar($this->mese,$this->anno)\"><img src='images/images_switch/prev.png'></div>";
+	   		echo "<div class='next' onclick=\"javascript:getNextCalendar($this->mese,$this->anno)\"><img src='images/images_switch/next.png'></div>";
+			echo "<div class='date'>".$mesi_completi[$this->mese-1]." ".$this->anno."</div>";
 	   	echo "</div>";
 	   }
 	   

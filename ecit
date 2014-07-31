@@ -1,0 +1,35 @@
+[33mcommit 2331512afd59d27c9de3838ce6fca350552097c8[m
+Author: nick990 <nick990>
+Date:   Wed Jul 30 23:18:22 2014 +0200
+
+    Calendar correctly printed , css needs correction and translation
+
+[33mcommit 25663822c325430d66eb3633fc4751cfc88bbd6a[m
+Author: nick990 <nick990>
+Date:   Wed Jul 30 20:03:57 2014 +0200
+
+    translated all CSS class names
+
+[33mcommit 8a3d7a116afdaf7eba2bbf75fb2630628e0b6802[m
+Author: nick990 <nick990>
+Date:   Wed Jul 30 18:57:13 2014 +0200
+
+    first test of style in php language
+
+[33mcommit 15cca0ae4642cca74cd7e7404cf9074df9676f8c[m
+Author: nick990 <nick990>
+Date:   Wed Jul 30 18:31:08 2014 +0200
+
+    index.php created
+
+[33mcommit 9cf1da97e6c6a5d54d78833415750bcc7cdb9b3e[m
+Author: Nicolò Festa <nicolo.festa90@gmail.com>
+Date:   Wed Jul 30 18:26:59 2014 +0200
+
+    Delete readme.txt~
+
+[33mcommit ed87df1fb853baddefd792e0847b10243e83a941[m
+Author: nick990 <nick990>
+Date:   Wed Jul 30 18:26:03 2014 +0200
+
+    first
