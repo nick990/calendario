@@ -18,7 +18,7 @@
 table.calendar_table{	
 	border: 1px solid black;
     border-collapse: collapse;
-
+	position:relative;
 }
 
 table.calendar_table td{
