@@ -34,7 +34,8 @@ function popupEventById(id){
 		 * 0<=top<=max_top
 		 */
 	
-		var max_left=giorno.closest(".calendar_container").width()-pop_w-2; 
+		var max_left=giorno.closest(".calendar_container").width()-pop_w-10; 
+		//var max_left=giorno.position().left+giorno.width()-pop_w-2; 
 		//posizione del popup rispetto all'evento(giorno)
 		posizione_y='sopra';
 		
@@ -45,12 +46,13 @@ function popupEventById(id){
 		}
 		//Se è troppo a Sx lo faccio rientrare a Dx
 		if (pop_left<0){
-			pop_left=2;
+			pop_left=7;
 			
 		}
 		//Se è troppo in alto lo sposto sotto il giorno
-		if(pop_top<0){
+		if(pop_top<62+35){
 			pop_top=giorno.height()+giorno.position().top+row;
+			//pop_top=62+35;
 			posizione_y='sotto';
 		}
 		pop.css('top',pop_top);

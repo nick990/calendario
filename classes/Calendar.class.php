@@ -64,7 +64,11 @@ class Calendar{
 	  */
 	  function stampa(){	
 	
-		$this->stampaSwitchMese();
+		echo '<div class="menu">';	
+			$this->stampaSwitchMese();
+			$this->stampaController();
+		echo '</div>';
+		
 		
 	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
 	  	
@@ -88,7 +92,7 @@ class Calendar{
 		
 	  	
 		echo '</table>';
-		$this->stampaController();
+		
 	
 	  }
 	  
@@ -136,11 +140,11 @@ class Calendar{
 				$result = mysql_query($query);
 				while ($array = mysql_fetch_array($result))
 				{
-					$ck_str='<input type="checkbox"';
+					$ck_str='<div class="check"><input type="checkbox"';
 					//If the current calendar is in the array  or the array  is empty I set checked=true
 					if(in_array($array['id'], $_SESSION['cals_id']))
 						$ck_str.=' checked="true"';
-					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].' ';
+					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].'</div>';
 					echo $ck_str;
 					
 				}
