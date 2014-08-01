@@ -6,7 +6,7 @@
  */
 function popupEventById(id){
 	eliminaTuttiPopup();	
-	$(".calendar_table").append("<div class='popup' id='popup_"+id+"'>"+"<div class='chiudi' id='chiudi_"+id+"'></div><div class='popup_content'></div></div>");
+	$(".calendar_container").append("<div class='popup' id='popup_"+id+"'>"+"<div class='chiudi' id='chiudi_"+id+"'></div><div class='popup_content'></div></div>");
 	var pop=$("#popup_"+id);
 	
 	$("#chiudi_"+id).click(function(){eliminaPopupById(id);});
@@ -34,7 +34,7 @@ function popupEventById(id){
 		 * 0<=top<=max_top
 		 */
 	
-		var max_left=giorno.closest(".calendar_table").width()-pop_w; 
+		var max_left=giorno.closest(".calendar_container").width()-pop_w-2; 
 		//posizione del popup rispetto all'evento(giorno)
 		posizione_y='sopra';
 		
@@ -91,14 +91,14 @@ function eliminaPopupById(id){
  * Aggiunge l'immagine freccia al popup sulla base della posizione
  */
 function aggiungiFreccia(pop,id,posizione_y){
-	pop.closest(".calendar_table").append('<div class="row" id="row_'+id+'"></div>');
+	pop.closest(".calendar_container").append('<div class="row" id="row_'+id+'"></div>');
 	row=$('.row');
 	//row.css('width',pop.outerWidth());
 	row.css('left',pop.position().left);
 	if(posizione_y=='sotto')	
-		row.css('top',pop.position().top-row.height()+2);
+		row.css('top',pop.position().top-row.height()+1);
 	if(posizione_y=='sopra')
-		row.css('top',pop.position().top+pop.height()+2);
+		row.css('top',pop.position().top+pop.height()+1);
 	row.append('<img src="images/images_row/'+posizione_y+'.png">');
 	
 	/*
