@@ -1,6 +1,6 @@
 <?php
 	header("Content-type: text/css");
-	require("/opt/lampp/htdocs/calendario3/config.php");
+	require("/opt/lampp/htdocs/calendar/config.php");
 ?>
 
 *{

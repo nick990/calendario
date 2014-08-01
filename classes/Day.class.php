@@ -17,7 +17,7 @@ class Day{
 	  * stampo 'mday'
 	  */
 	 function stampa(){
-	 	require("/opt/lampp/htdocs/calendario3/config.php");
+	 	require("/opt/lampp/htdocs/calendar/config.php");
 	 	echo '<div class="number">';
 	 	echo $this->data['mday'];
 		echo '</div>';

@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="js/jsfun.js"></script>
 	
 		
-		<title>Calendario3</title>
+		<title>Calendar</title>
 	</head>
 	<body>
 		<div class="calendar_container"></div>

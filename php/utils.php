@@ -14,7 +14,7 @@
 	 * Funzione di autoload per il caricamento automatico delle classi php
 	 */
 	function __autoload($nome_classe){
-		require_once('/opt/lampp/htdocs/calendario3/classes/'.$nome_classe.'.class.php');
+		require_once('/opt/lampp/htdocs/calendar/classes/'.$nome_classe.'.class.php');
 	}
 	
 	/* 

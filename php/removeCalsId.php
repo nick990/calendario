@@ -3,7 +3,7 @@
 	 * Remove the calendar id passed by POST from the session array
 	 */
 	session_start();
-	require_once('/opt/lampp/htdocs/calendario3/php/utils.php');
+	require_once('/opt/lampp/htdocs/calendar/php/utils.php');
 	$arr2=array();
 	for($i=0;$i<count($_SESSION['cals_id']);$i++){
 		if($_SESSION['cals_id'][$i]!=$_POST['id'])

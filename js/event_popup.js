@@ -11,7 +11,7 @@ function popupEventById(id){
 	
 	$("#chiudi_"+id).click(function(){eliminaPopupById(id);});
 	
-	$("#popup_"+id).find(".popup_content").load("/calendario3/php/get_popup_event.php",{'id':id},function(){
+	$("#popup_"+id).find(".popup_content").load("/calendar/php/get_popup_event.php",{'id':id},function(){
 		/*
 		 * Una volta riempito il contenuto lo posiziono e lo rendo visibile (di default il popup è invisibile)
 		 */

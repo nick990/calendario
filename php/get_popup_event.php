@@ -1,6 +1,6 @@
 <?php
-		require_once('/opt/lampp/htdocs/calendario3/php/utils.php');
-		require_once('/opt/lampp/htdocs/calendario3/php/DBfunctions.php');
+		require_once('/opt/lampp/htdocs/calendar/php/utils.php');
+		require_once('/opt/lampp/htdocs/calendar/php/DBfunctions.php');
 		 connettiDB("127.0.0.1","calendario_db","root","");
 	/*
 	 * Estraggo dal DB le informazioni relative all'evento con ID passato tramite POST e le stampo

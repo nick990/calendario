@@ -22,7 +22,7 @@ class Calendar{
 	 	/*
 		 * Opening DB connession
 		 */
-		 require_once('/opt/lampp/htdocs/calendario3/php/DBfunctions.php');
+		 require_once('/opt/lampp/htdocs/calendar/php/DBfunctions.php');
 		 connettiDB("127.0.0.1","calendario_db","root","");
 	 	if(empty($mese)||empty($anno)){
 	 		$now=getdate();
