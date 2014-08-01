@@ -1,6 +1,7 @@
 
 <?php
-class Calendar{	
+class Calendar{
+	
 	private $mese;
 	private $anno;
 	private $giorni=array();
@@ -87,7 +88,7 @@ class Calendar{
 		
 	  	
 		echo '</table>';
-		
+		$this->stampaController();
 	
 	  }
 	  
@@ -125,6 +126,26 @@ class Calendar{
 			echo "<div class='date'>".$mesi_completi[$this->mese-1]." ".$this->anno."</div>";
 	   	echo "</div>";
 	   }
+	   /*
+	    * Stampa il div per la selezione dei calendari
+	    */
+	   private function stampaController(){
+	   		
+	    	echo "<div class='controller'>";
+	    		$query="SELECT * FROM calendario_db.calendari";
+				$result = mysql_query($query);
+				while ($array = mysql_fetch_array($result))
+				{
+					$ck_str='<input type="checkbox"';
+					//If the current calendar is in the array session or the array session is empty I set checked=true
+					if(in_array($array['id'], $_SESSION['cals_id']))
+						$ck_str.=' checked="true"';
+					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].' ';
+					echo $ck_str;
+					
+				}
+	    	echo "</div>";
+	    }
 	   
 	  
 }//fine classe Calendario

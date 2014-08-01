@@ -10,7 +10,7 @@ class Day{
 	 function __construct($gg="",$mm="",$aaaa=""){
 	 	$this->data=getdate(mktime(0,0,0,$mm,$gg,$aaaa));
 		
-		$this->estraiEventi($gg, $mm, $aaaa);
+		$this->eventi=extractEventsInCheckedCalendars($gg, $mm, $aaaa);
 	 }
 	 
 	 /*
@@ -38,18 +38,8 @@ class Day{
 	function getWDay(){
 	 	return $this->data['wday'];
 	 }
-	 /*
-	* Estraggo dal DB tutte gli eventi semplici (che hanno inizio e fine in questo giorno non durano tutto il giorno)
-	*/
-	function estraiEventi($gg,$mm,$aaaa){
-		$query="SELECT * FROM calendario_db.eventi WHERE eventi.data_inizio BETWEEN '$aaaa-$mm-$gg 00:00' AND '$aaaa-$mm-$gg 23:59' AND eventi.data_fine BETWEEN '$aaaa-$mm-$gg 00:00' AND '$aaaa-$mm-$gg 23:59'   ORDER BY data_inizio,tipo";
-		$result = mysql_query($query);
-		while ($array = mysql_fetch_array($result))
-		{
-			$newEvento=new Event($array['id'],$array['data_inizio'],$array['data_fine'],$array['nome'],$array['descrizione'],$array['tipo']);
-			$this->eventi[]=$newEvento;
-		}
-	}
+	
+	
 	
 	 /*
 	  * Crea un'istanza della classe Giorno con data precedente di 1 giorno

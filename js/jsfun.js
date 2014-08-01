@@ -1,3 +1,15 @@
+/* Chiusura di tutti i popup se chiudo fuori da un popup
+ * Se clicco su un element che non è all'interno di popup chiudo tutti i popup
+ */
+$( document ).ready(function() {
+	$('.calendar_container').click(function(event){
+		if($(event.target).closest('.popup').length == 0)
+			eliminaTuttiPopup();
+		//if($(event.target).attr('class')!='popup')
+		//	eliminaTuttiPopup();
+	});
+});
+
 function getCalendar(){
 	$('.calendar_container').load('php/getCalendar.php');
 }
@@ -28,4 +40,13 @@ function getNextCalendar(month,year){
 		
 	});
 	
+}
+function checkbox_changed(id,month,year){
+	var $check = $("input[name='checkbox_"+id+"']");
+    if ($check.prop('checked')){
+    	$('.calendar_container').load('php/addCalsId.php',{'id':id,'month':month,'year':year});
+    }else{
+    	$('.calendar_container').load('php/removeCalsId.php',{'id':id,'month':month,'year':year});
+    }
+
 }

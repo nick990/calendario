@@ -54,6 +54,7 @@ table.calendar_table tr.heading_tr td{
 }
 
 .switch{
+	
 	height:<?php echo $HEIGHT_SWITCH; ?>;
 	line-height:<?php echo $HEIGHT_SWITCH."px"; ?>;	
 	//background-color:#eef4ed;
