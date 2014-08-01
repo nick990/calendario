@@ -137,7 +137,7 @@ class Calendar{
 				while ($array = mysql_fetch_array($result))
 				{
 					$ck_str='<input type="checkbox"';
-					//If the current calendar is in the array session or the array session is empty I set checked=true
+					//If the current calendar is in the array  or the array  is empty I set checked=true
 					if(in_array($array['id'], $_SESSION['cals_id']))
 						$ck_str.=' checked="true"';
 					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].' ';

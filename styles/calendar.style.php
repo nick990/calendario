@@ -22,6 +22,11 @@ table.calendar_table{
 }
 
 table.calendar_table td{
+	  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+
+ 
 	 border: 1px solid black;	 
 	 vertical-align:top;	
 	 /*height:auto;*/
