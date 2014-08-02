@@ -1,0 +1,36 @@
+
+<html>
+	<head>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<script type="text/javascript" src="js/jsfun.js"></script>
+	</head>
+	<body>
+		<?php
+			require "php/session_initial.php";
+			require 'php/link_CSS.php';
+			//require_once 'php/utils.php';
+			if (isset($_SESSION['user_id'])&&empty($_SESSION['admin'])) {
+		  		echo "Solo gli utenti amministratori possono accedere a questa pagina";
+				echo "<a id='logout_button' href='javascript:logout()'>LOGOUT</a>";
+		  		exit;
+			}
+			if (empty($_SESSION['user_id'])) {
+		  		echo "Devi effettuare il <a href='login_page.php'>login</a> per accedere a questa pagina";
+		  		exit;
+			}	
+		?>
+		ADMIN TOOL
+		<br />
+		<a id="logout_button" href="javascript:logout()">LOGOUT</a>
+		<br />
+		
+		<div class='editor'></div>
+		
+		<script type="text/javascript">
+			getCalendarForAdmin();			
+		</script>
+		
+		
+	</body>
+</html>
