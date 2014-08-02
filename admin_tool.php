@@ -4,6 +4,8 @@
 			<link rel="stylesheet" type="text/css" href="styles/admin.style.php"/>
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<script type="text/javascript" src="js/jsfun.js"></script>
+			<script type="text/javascript" src="js/admin_tool/calendar_editor_popup.js"></script> 
+			<script type="text/javascript" src="js/event_popup.js"></script>
 			
 	</head>
 	<body>

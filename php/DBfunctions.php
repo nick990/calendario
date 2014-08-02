@@ -72,5 +72,19 @@
 		mysql_query($query);
 		
 	}
-	
+	/*
+	 * Ritorna il risultato della query di selezione dei calendari
+	 */
+	function extractCalendars(){
+		$query="SELECT * FROM calendario_db.calendari";
+		$result = mysql_query($query);
+		return $result;
+	}
+	/*
+	 * Elimina il calendario con id passato dal db
+	 */
+	function deleteCalendar($id){
+		$query="DELETE FROM calendario_db.calendari WHERE calendari.id='".$id."'";
+		mysql_query($query);
+	}
 ?>

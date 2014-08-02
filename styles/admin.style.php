@@ -14,3 +14,32 @@
 .new_cal_container{
 	overflow:hidden;
 }
+
+.calendar_editor{
+	position:relative;
+	width:200px;
+}
+.calendar_editor_popup{
+	position:absolute;
+	width:300px;
+	height:200px;
+	background-color:<?php echo $POPUP_BC; ?>;
+	z-index:50;
+	visibility:hidden;
+	top:0px;	
+	border:1px #9b9b9b solid;
+  	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+ 	
+ 
+ 	visibility:hidden; 	
+}
+.close_editor{
+	float:right;
+	height:15px;
+	width:15px;
+	background-image:url('../images/icon_x.gif');
+	cursor: pointer; cursor: hand;
+	margin:5px;
+}

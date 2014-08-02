@@ -160,7 +160,7 @@ class Calendar{
 	    }
 	   
 	 
-	  public function stampaManager(){//	if($(\'#new_cal_name\').val().length>0)
+	  public function stampaManager(){
 	  	echo '<div class="new_cal_container">';
 		  	echo '<form id="new_cal_form" action="javascript:void(0);" onsubmit="addCalendar($(\'#new_cal_name\').val(),'.$this->mese.','.$this->anno.')">';
 		  		echo '<input type="text" size="15" id="new_cal_name" name="new_cal_name" placeholder="nuovo calendario"/>';
@@ -169,7 +169,20 @@ class Calendar{
 			echo '</form>';//devo chiamare get calendar
 			echo '<div id="new_cal_error"></div>';
 		echo '</div>';
-		
+		echo '<div class="calendars_manager">';
+			//connettiDB("127.0.0.1","calendario_db","root","");
+			$calendars=extractCalendars();
+			while ($array = mysql_fetch_array($calendars))
+			{
+				echo '<div class="calendar_editor" id="calendar_editor_'.$array['id'].'">';
+					echo $array['nome'];
+					echo ' <a href="javascript:deleteCalendar('.$array['id'].','.$this->mese.','.$this->anno.')">delete</a>';
+					echo ' <a href="javascript:calendarEditorPopupById('.$array['id'].')">edit</a>';
+				echo '</div>';
+				
+			}
+			//mysql_close();
+		echo '</div>';
 		
 		echo '<script type="text/javascript" src="js/admin_tool/stampa_manager.js"></script>';
 	

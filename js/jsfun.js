@@ -2,11 +2,10 @@
  * Se clicco su un element che non è all'interno di popup chiudo tutti i popup
  */
 $( document ).ready(function() {
-	$('.calendar_container').click(function(event){
+	$('html').click(function(event){
 		if($(event.target).closest('.popup').length == 0)
 			eliminaTuttiPopup();
-		//if($(event.target).attr('class')!='popup')
-		//	eliminaTuttiPopup();
+		
 	});
 });
 
@@ -109,4 +108,15 @@ function addCalendar(name,month,year){
 	
 	
 	
+}
+function deleteCalendar(id,month,year){
+	$.post('php/deleteCalendar.php',{'id':id},function(){
+		getCalendarForAdmin(month,year);
+	});
+}
+function removeElementById(id){
+	$('#'+id).remove();
+}
+function removeElementByClass(aclass){
+	$('.'+aclass).remove();
 }
