@@ -56,6 +56,21 @@
 		}
 		return $eventi;
 	}
-
+	/*
+	 * true: calendar exists
+	 * false: calendar doesn't exists
+	 */
+	function existsCalendarByName($name){
+		$query="SELECT * FROM calendario_db.calendari WHERE calendari.nome='$name'";
+		$result = mysql_query($query);
+		if(mysql_fetch_array($result))
+			return true;
+		return false;
+	}
+	function insertNewCalendar($name){
+		$query="INSERT INTO calendario_db.calendari (nome) VALUES ('".$name."')";
+		mysql_query($query);
+		
+	}
 	
 ?>

@@ -59,7 +59,7 @@ function logout(){
 }
 function getCalendarForAdmin(){
 	$('.editor').load('php/getCalendarForAdmin.php');
-}
+	}
 function getCalendarForAdmin(month,year){
 	$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
 		
@@ -88,7 +88,25 @@ function getNextCalendarForAdmin(month,year){
 	});
 	
 }
-function addCalendar(month,year){
-	//qui dovrei aggiungere un calendario al DB
-	getCalendarForAdmin(month,year);
+/*
+ * Aggiugne un nuovo calendario nel DB con il nome passato,
+ * poi ristampa l'editor
+ */
+function addCalendar(name,month,year){
+	
+	if(name.length==0)
+		return;
+	$.post('php/addCalendar.php',{'name':name},function(risposta){
+			if(risposta==0){
+				getCalendarForAdmin(month,year);
+				//return false;
+			}
+			else if(risposta==1){
+				$('#new_cal_error').append('Il calendario <b><font color="black">'+name+'</font></b> e\' gia\' presente!');
+	
+			}
+		});
+	
+	
+	
 }

@@ -160,9 +160,19 @@ class Calendar{
 	    }
 	   
 	 
-	  public function stampaManager(){
-	  	echo '<input type="text" size="15" id="new_cal" placeholder="nuovo calendario">';
-		echo '<input type="button" id="new_cal_add" value="+" onclick="javascript:addCalendar('.$this->mese.','.$this->anno.')">';
+	  public function stampaManager(){//	if($(\'#new_cal_name\').val().length>0)
+	  	echo '<div class="new_cal_container">';
+		  	echo '<form id="new_cal_form" action="javascript:void(0);" onsubmit="addCalendar($(\'#new_cal_name\').val(),'.$this->mese.','.$this->anno.')">';
+		  		echo '<input type="text" size="15" id="new_cal_name" name="new_cal_name" placeholder="nuovo calendario"/>';
+				echo '<input type="submit" id="new_cal_add" value="+" >';
+				
+			echo '</form>';//devo chiamare get calendar
+			echo '<div id="new_cal_error"></div>';
+		echo '</div>';
+		
+		
+		echo '<script type="text/javascript" src="js/admin_tool/stampa_manager.js"></script>';
+	
 	  }
 	   /*
 	  * Stampa il Calendario in vista mensile

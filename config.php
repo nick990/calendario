@@ -30,4 +30,8 @@
 	$HEIGHT_EVENT=floor(($HEIGHT_DAY-30)/$MAX_EVENT-7);
 	$LINE_HEIGHT_EVENT=$HEIGHT_EVENT."px";
 	
+	$POPUP_BC="#c9d6c7";
+	$NUMBER_BC="#eef4ed";
+	
+	$COLOR_ERROR="#d64242";
 ?>

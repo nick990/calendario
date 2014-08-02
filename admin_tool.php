@@ -1,9 +1,10 @@
 
 <html>
-	<head>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<head>		
+			<link rel="stylesheet" type="text/css" href="styles/admin.style.php"/>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<script type="text/javascript" src="js/jsfun.js"></script>
+			
 	</head>
 	<body>
 		<?php
@@ -24,13 +25,13 @@
 		<br />
 		<a id="logout_button" href="javascript:logout()">LOGOUT</a>
 		<br />
-		
 		<div class='editor'></div>
 		
 		<script type="text/javascript">
 			getCalendarForAdmin();			
 		</script>
 		
-		
+	
 	</body>
+	
 </html>

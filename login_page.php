@@ -1,6 +1,8 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="styles/login.style.php"/>
 		<?php
+		require("php/link_CSS.php");
 		/*
 		 * Se l'utente che tenta di accedere alla pagina di login è già loggato
 		 * viene sloggato e poi ritorna a questa pagina
@@ -16,16 +18,24 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<form method="post" id="login_post" />
-		 	<label for="username">Username</label>
-			<input name="username" type="text" id="username" maxlength="10" style="width: 250px"/>
-		 	<label for="password">Password</label>
-		 	<input name="password" type="password" id="password" maxlength="10" style="width: 250px"/>
-		  	<input type="submit" id="submit" value="Login" />
-		</form>
-		<div id="error_message"></div>
+		<div class="form_container">
+			<form method="post" id="login_form" />
+				<div>
+				 	<label for="username">Username</label>
+					<input name="username" type="text" id="username" maxlength="15" size="15"/>
+			 	</div>
+			 	<div>
+				 	<label for="password">Password</label>
+				 	<input name="password" type="password" id="password" maxlength="15" size="15"/>
+			  	</div>
+			  	<input type="submit" id="submit" value="LOGIN" />
+			
+			</form>
+			<div id="error_message"></div>
+		</div>
 		<script type="text/javascript">
-			$("#login_post").submit(function() {
+		
+			$("#login_form").submit(function() {
 			  // passo i dati (via POST) al file PHP che effettua le verifiche 
 			  $.post("php/login.php", { username: $('#username').val(), password: $('#password').val()}, function(risposta) {
 			  

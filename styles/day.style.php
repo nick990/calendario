@@ -11,7 +11,8 @@
 	
 	
 	text-align:left;
-	background-color:#eef4ed;
+	background-color:<?php echo $NUMBER_BC; ?>;
+	//background-color:#eef4ed;
 	
 }
 .events,.events_scroll{
