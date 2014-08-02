@@ -22,5 +22,9 @@
 	else {
 		$cal=new Calendar();
 	}
-	$cal->stampa();
+	if($_POST['admin']=="false")
+		$cal->stampa();
+	else {
+		$cal->stampaForAdmin();
+	}
 ?>

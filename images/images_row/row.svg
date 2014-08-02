@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   inkscape:export-filename="/opt/lampp/htdocs/calendario/style/images_row/sotto.png"
+   inkscape:export-filename="/opt/lampp/htdocs/calendar/images/images_row/sotto.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    sodipodi:docname="row.svg">
@@ -70,7 +70,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="23.88"
-     inkscape:cx="5.1298157"
+     inkscape:cx="-2.2403686"
      inkscape:cy="19.200168"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -115,7 +115,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -125,7 +125,7 @@
      id="layer1"
      transform="translate(0,-1027.3622)">
     <path
-       style="fill:#d5eddf;fill-opacity:0.94117647;stroke:none"
+       style="fill:#c9d6c7;fill-opacity:1;stroke:none"
        d="M 12.519895,1.918236 0,25 25,25 z"
        id="path3763"
        inkscape:connector-curvature="0"

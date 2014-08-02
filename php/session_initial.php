@@ -1,11 +1,16 @@
 <?php
 	/*
-	 * Da chiamare nell'index.php prima di qualsiasi istruzione
+	 * Da chiamare nell'index.php e admin_tool.php prima di qualsiasi istruzione
 	 * Nella sessione salvo gli ID dei calendari da visualizzare
 	 * $_SESSION['cals_id'] è larray delle stringhe che rappresentano gli ID
 	 * Per default li metto tutti
 	 */
-	session_start();
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+	if(isset($_SESSION['cals_id']))
+		return;
 	$_SESSION['cals_id']=array();
 	require_once('php/DBfunctions.php');
 	connettiDB("127.0.0.1","calendario_db","root","");

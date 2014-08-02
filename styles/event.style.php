@@ -21,6 +21,7 @@
 .event {
 	padding:0px;
 	margin-left:10px;
+	
 }
 .event a{
 	 text-decoration: none;
@@ -31,6 +32,7 @@
 	 color:#666666;
 }
 .daily_event{
+	
 	background-color:#FEF9DC;
 	border: 1px solid #FBE983;
 	
@@ -40,27 +42,21 @@
 }
 
 .popup{
-	font-size:14px;
-	
+	font-size:14px;	
 	position:absolute;
-	top:0px;
-	
-	
-	width:250px;
-	
-	border:1px #9b9b9b solid;*/
-	
-	
+	top:0px;	
+	width:250px;	
+	border:1px #9b9b9b solid;
   	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
- 		background-color:#D5EDD3;
- 	visibility:hidden;
- 	
- 	
+ 	//background-color:#D5EDD3;
+ 
+ 	visibility:hidden; 	
 }
 .popup_content{
-	background-color:#D5EDD3;
+	//background-color:#D5EDD3;
+	background-color:#c9d6c7;
 	padding:5px;
 }
 .chiudi{
@@ -73,11 +69,12 @@
 }
 .popup_evento_nome{
 	font-weight:bold;
-	border-bottom:3px solid #edf7ef;
+	/*edf7ef*/
+	border-bottom:3px solid #eef4ed;
 	padding:5px;
 }
 .popup_evento_descrizione{
-	border:3px solid #edf7ef;
+	border:3px solid #eef4ed;
 	padding:5px;
 	height:65px;
 	overflow-y:scroll;

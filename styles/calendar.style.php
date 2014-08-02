@@ -19,12 +19,14 @@ table.calendar_table{
 	//border: 1px solid black;
     border-collapse: collapse;
 	//position:relative;
+	
 }
 
 table.calendar_table td{
 	  box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
+  		-moz-box-sizing:border-box;
+  	
+  	-webkit-box-sizing:border-box;
 
  
 	 border: 1px solid #b5b5b5;	 

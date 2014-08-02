@@ -2,8 +2,8 @@
 	//Numero massimo di eventi visualizzabili in events, oltre events diventa events_scroll con la barra di scorrimento dell'overflow verticale
 	$MAX_EVENT=4;
 
-	$WIDTH_CALENDAR_CONTAINER=800;
-	$HEIGHT_CALENDAR_CONTAINER=700;
+	$WIDTH_CALENDAR_CONTAINER=900;
+	$HEIGHT_CALENDAR_CONTAINER=800;
 	
 	$HEIGHT_MENU=60;
 	$LINE_HEIGHT_SWITCH=$HEIGHT_MENU."px";

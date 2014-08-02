@@ -7,6 +7,8 @@ class Calendar{
 	private $giorni=array();
 	private $giorni_mese; //Numero di giorni appartenti al mese 
 	
+	private $admin=false; //in fase di stampa mi dice se l'utente è l'admin o meno
+	
 	/*
 	 *Giorni non appartenenti al mese ma presenti nella visualizzazione 
 	*/
@@ -62,11 +64,12 @@ class Calendar{
 	  * Stampa il Calendario in vista mensile
 	  * Utilizzando una tabella 6x7 più le intestazioni
 	  */
-	  function stampa(){	
-	
-		echo '<div class="menu">';	
-			$this->stampaSwitchMese();
-			$this->stampaController();
+	  function stampa(){
+	  		
+		
+		echo '<div class="menu">';
+			$this->stampaSwitchMese("false");
+			$this->stampaController("false");
 		echo '</div>';
 		
 		
@@ -122,18 +125,23 @@ class Calendar{
 	   /*
 	    * Stampa il div per lo switch del mese (visione mensile)
 	    */
-	   private function stampaSwitchMese(){
+	   private function stampaSwitchMese($admin=""){
+	   	
 	   	global $mesi_completi;
 	   	echo "<div class='switch'>";
-	   		echo "<div class='prev' onclick=\"javascript:getPrevCalendar($this->mese,$this->anno)\"><img src='images/images_switch/prev.png'></div>";
-	   		echo "<div class='next' onclick=\"javascript:getNextCalendar($this->mese,$this->anno)\"><img src='images/images_switch/next.png'></div>";
+			if($admin=="true")
+				$str='ForAdmin';
+			else
+				$str='';
+	   		echo "<div class='prev' onclick=\"javascript:getPrevCalendar".$str."($this->mese,$this->anno)\"><img src='images/images_switch/prev.png'></div>";
+	   		echo "<div class='next' onclick=\"javascript:getNextCalendar".$str."($this->mese,$this->anno)\"><img src='images/images_switch/next.png'></div>";
 			echo "<div class='date'>".$mesi_completi[$this->mese-1]." ".$this->anno."</div>";
 	   	echo "</div>";
 	   }
 	   /*
 	    * Stampa il div per la selezione dei calendari
 	    */
-	   private function stampaController(){
+	   private function stampaController($admin=""){
 	   		
 	    	echo "<div class='controller'>";
 	    		$query="SELECT * FROM calendario_db.calendari";
@@ -144,13 +152,55 @@ class Calendar{
 					//If the current calendar is in the array  or the array  is empty I set checked=true
 					if(in_array($array['id'], $_SESSION['cals_id']))
 						$ck_str.=' checked="true"';
-					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].'</div>';
+					$ck_str.='name=checkbox_'.$array['id'].' onChange="checkbox_changed('.$admin.','.$array['id'].','.$this->mese.','.$this->anno.')">'.$array['nome'].'</div>';
 					echo $ck_str;
 					
 				}
 	    	echo "</div>";
 	    }
 	   
-	  
+	 
+	  public function stampaManager(){
+	  	echo '<input type="text" size="15" id="new_cal" placeholder="nuovo calendario">';
+		echo '<input type="button" id="new_cal_add" value="+" onclick="javascript:addCalendar('.$this->mese.','.$this->anno.')">';
+	  }
+	   /*
+	  * Stampa il Calendario in vista mensile
+	  * Utilizzando una tabella 6x7 più le intestazioni
+	  */
+	  function stampaForAdmin(){
+	  		
+		
+		echo '<div class="menu">';
+			$this->stampaSwitchMese("true");
+			$this->stampaController("true");
+		echo '</div>';
+		
+		
+	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
+	  	
+	  	for($i=0;$i<count($this->giorni);$i++){
+	  		echo '<td>';
+			if($i>=$this->giorniMesePrecedente&&$i<count($this->giorni)-$this->giorniMeseSuccessivo)
+				echo '<div class="day">';
+			else 
+				echo '<div class="day_out">';
+			$this->giorni[$i]->stampa();
+			echo '</div>';
+			echo '</td>';
+			//Se è domenica -> chiudo la riga 
+			if($this->normalWDay($this->giorni[$i]->getWDay())==6){
+				echo '</tr>';
+				//Se non è l'ultimo giorno del mese apro una nuova riga
+				if($i<count($this->giorni)-1)
+					echo '<tr>';
+			}
+	  	}
+		
+	  	
+		echo '</table>';
+		
+	
+	  }
 }//fine classe Calendario
 ?>
