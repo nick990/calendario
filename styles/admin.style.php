@@ -22,7 +22,7 @@
 .calendar_editor_popup{
 	position:absolute;
 	width:300px;
-	height:200px;
+	//height:200px;
 	background-color:<?php echo $POPUP_BC; ?>;
 	z-index:50;
 	visibility:hidden;
@@ -35,6 +35,9 @@
  
  	visibility:hidden; 	
 }
+.cep_content{
+	padding:10px;
+}
 .close_editor{
 	float:right;
 	height:15px;
@@ -42,4 +45,15 @@
 	background-image:url('../images/icon_x.gif');
 	cursor: pointer; cursor: hand;
 	margin:5px;
+}
+#cal_edit_form_error{
+	color:<?php echo $COLOR_ERROR; ?>;
+	height:30px;
+	min-height:20px;
+	float:bottom;
+}
+#cal_edit_form #submit{
+	padding:3px;
+	float:right;
+	margin-bottom:5px;
 }

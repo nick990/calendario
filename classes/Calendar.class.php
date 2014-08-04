@@ -177,7 +177,7 @@ class Calendar{
 				echo '<div class="calendar_editor" id="calendar_editor_'.$array['id'].'">';
 					echo $array['nome'];
 					echo ' <a href="javascript:deleteCalendar('.$array['id'].','.$this->mese.','.$this->anno.')">delete</a>';
-					echo ' <a href="javascript:calendarEditorPopupById('.$array['id'].')">edit</a>';
+					echo ' <a href="javascript:calendarEditorPopup('.$array['id'].','.$this->mese.','.$this->anno.')">edit</a>';
 				echo '</div>';
 				
 			}

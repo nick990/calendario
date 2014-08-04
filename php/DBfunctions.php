@@ -67,9 +67,16 @@
 			return true;
 		return false;
 	}
+	/*
+	 * Inserisce nel DB un nuovo calendario col nome passato,
+	 * Ne estrae l'id e lo inserisce nell'array di sessione
+	 */
 	function insertNewCalendar($name){
 		$query="INSERT INTO calendario_db.calendari (nome) VALUES ('".$name."')";
 		mysql_query($query);
+		$query="SELECT id from calendario_db.calendari WHERE nome='".$name."'";
+		$array=mysql_fetch_array(mysql_query($query));
+		addCalendarToSession($array['id']);
 		
 	}
 	/*
@@ -82,9 +89,65 @@
 	}
 	/*
 	 * Elimina il calendario con id passato dal db
+	 * (Dovrei eliminare anche gli eventi!!!)
 	 */
 	function deleteCalendar($id){
 		$query="DELETE FROM calendario_db.calendari WHERE calendari.id='".$id."'";
 		mysql_query($query);
+		$query="DELETE FROM calendario_db.eventi WHERE eventi.id_calendario='".$id."'";
+		mysql_query($query);
+		removeCalendarFromSession($id);
+	}
+	/*
+	 * Rimuove l'id passato dall'array di sessione
+	 */
+	function removeCalendarFromSession($id){
+		if(!isset($_SESSION)) 
+    	{ 
+       		session_start(); 
+    	}
+		require_once('/opt/lampp/htdocs/calendar/php/utils.php');
+		$arr2=array();
+		for($i=0;$i<count($_SESSION['cals_id']);$i++){
+			if($_SESSION['cals_id'][$i]!=$id)
+				$arr2[]=$_SESSION['cals_id'][$i];
+		}
+		$_SESSION['cals_id']=null;
+		$_SESSION['cals_id']=array();
+		
+		for($i=0;$i<count($arr2);$i++){
+			$_SESSION['cals_id'][]=$arr2[$i];
+		}
+	}
+	
+	/*
+	 *  Aggiunge l'id passato all'array di sessione
+	 */
+	 function addCalendarToSession($id){
+	 	if(!isset($_SESSION)) 
+    	{ 
+       		session_start(); 
+    	}
+		$_SESSION['cals_id'][]=$id;
+		
+	 }
+		
+	
+	/*
+	 * Cambia il nome al calendario con id passato
+	 */
+	function changeCalendarName($id,$new_name){
+		$query="UPDATE calendari SET nome='".$new_name."' WHERE id=".$id;
+		mysql_query($query);
+	}
+	
+	/*
+	 * Sposta gli eventi del calendario 2 nel calendario 1
+	 * Poi elimina il calendario 2
+	 */
+	function joinCalendars($id1,$id2){
+		$query="UPDATE eventi SET id_calendario='".$id1."' WHERE id_calendario=".$id2;
+		mysql_query($query);
+		deleteCalendar($id2);
 	}
 ?>

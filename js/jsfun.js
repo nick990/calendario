@@ -71,9 +71,11 @@ function getPrevCalendarForAdmin(month,year){
 		month=12;
 		year--;
 	}
-	$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
+	//
+	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year});
+	/*$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
 		
-	});
+	});*/
 }
 function getNextCalendarForAdmin(month,year){
 	if(month!=12&&year!=3000)
@@ -82,10 +84,11 @@ function getNextCalendarForAdmin(month,year){
 		month=1;
 		year++;
 	}
-	$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
+	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year});
+	/*$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
 		
 	});
-	
+	*/
 }
 /*
  * Aggiugne un nuovo calendario nel DB con il nome passato,
@@ -97,6 +100,7 @@ function addCalendar(name,month,year){
 		return;
 	$.post('php/addCalendar.php',{'name':name},function(risposta){
 			if(risposta==0){
+				
 				getCalendarForAdmin(month,year);
 				//return false;
 			}
@@ -104,10 +108,7 @@ function addCalendar(name,month,year){
 				$('#new_cal_error').append('Il calendario <b><font color="black">'+name+'</font></b> e\' gia\' presente!');
 	
 			}
-		});
-	
-	
-	
+		});	
 }
 function deleteCalendar(id,month,year){
 	$.post('php/deleteCalendar.php',{'id':id},function(){

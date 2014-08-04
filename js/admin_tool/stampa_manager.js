@@ -14,5 +14,5 @@ $(document).ready(function() {
 		$('#new_cal_error').text('');
 	});
 	
-
+	
 });

@@ -14,8 +14,7 @@
 		echo 1;
 		
 	}else{
-	insertNewCalendar($nome);
-	
+		insertNewCalendar($nome);		
 	echo 0;
 	}
 	mysql_close();
