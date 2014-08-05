@@ -18,6 +18,7 @@ class Day{
 	  */
 	 function stampa(){
 	 	require("/opt/lampp/htdocs/calendar/config.php");
+		
 	 	echo '<div class="number">';
 	 	echo $this->data['mday'];
 		echo '</div>';
@@ -34,6 +35,13 @@ class Day{
 		echo '</div>';
 	 }
 	
+	/*
+	 * stampa() + handler per popup di creazione di un un nuovo evento su ogni giorno
+	 */
+	 function stampaForAdmin(){
+	 	$this->stampa();
+		
+	 }
 	
 	function getWDay(){
 	 	return $this->data['wday'];

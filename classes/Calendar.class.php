@@ -205,10 +205,11 @@ class Calendar{
 	  	for($i=0;$i<count($this->giorni);$i++){
 	  		echo '<td>';
 			if($i>=$this->giorniMesePrecedente&&$i<count($this->giorni)-$this->giorniMeseSuccessivo)
-				echo '<div class="day">';
+				echo '<div class="day" id="day_'.$i.'">';
 			else 
-				echo '<div class="day_out">';
-			$this->giorni[$i]->stampa();
+				echo '<div class="day_out" id="day_'.$i.'">';
+			echo '<div class="new_event_btn" id="new_event_btn_'.$i.'"></div>';
+			$this->giorni[$i]->stampaForAdmin();
 			echo '</div>';
 			echo '</td>';
 			//Se è domenica -> chiudo la riga 

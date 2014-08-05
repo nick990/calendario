@@ -48,13 +48,15 @@ table.calendar_table tr.heading_tr td{
 	
 }
 
-.day_out{	
+.day_out{
+	position:relative;
 	background-color:#e2e2e2;
 	width:100%;
 	height:100%;600
 	overflow:hidden;
 }
 .day{
+	position:relative;
 	width:100%;
 	height:100%;	
 	overflow:hidden;

@@ -7,7 +7,7 @@
 	}
 	
 		$cal->stampaForAdmin();
-	
+	echo '<script type="text/javascript" src="js/admin_tool/new_event_popup.js"></script>';	
 	
 	
 ?>

@@ -27,3 +27,13 @@
 .events_scroll{
 	overflow-y:scroll;
 }
+.new_event_btn{
+	/*Stessa dimensione di .number*/
+	width:25px;
+	height:25px;
+	//background-color:red;
+	position:absolute;
+	left:<?php echo ($WIDTH_DAY-25); ?>;
+	background-image:url('/calendar/images/plus1.png');
+	visibility:hidden;
+}
