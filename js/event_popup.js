@@ -91,6 +91,7 @@ function eliminaPopupById(id){
 }
 /*
  * Aggiunge l'immagine freccia al popup sulla base della posizione
+ * !!!: Ho aggiunto l'id al giorno, posso sfruttarli e avere un'unica funzione aggiungiFreccia
  */
 function aggiungiFreccia(pop,id,posizione_y){
 	pop.closest(".calendar_container").append('<div class="row" id="row_'+id+'"></div>');
@@ -106,9 +107,12 @@ function aggiungiFreccia(pop,id,posizione_y){
 	/*
 	 * posizione orrizzontale: nel mezzo della dimensione del giorno
 	 */
+	
 	var giorno=$("#evento"+id).closest(".day");
 	if(giorno.length<=0)
 		giorno=$("#evento"+id).closest(".day_out");
+	
+	
 	row.css('left',giorno.position().left+giorno.width()/2-row.width()/2);
 	row.css("visibility","visible");
 	return;

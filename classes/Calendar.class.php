@@ -208,8 +208,8 @@ class Calendar{
 				echo '<div class="day" id="day_'.$i.'">';
 			else 
 				echo '<div class="day_out" id="day_'.$i.'">';
-			echo '<div class="new_event_btn" id="new_event_btn_'.$i.'"></div>';
-			$this->giorni[$i]->stampaForAdmin();
+			
+			$this->giorni[$i]->stampaForAdmin($i);
 			echo '</div>';
 			echo '</td>';
 			//Se è domenica -> chiudo la riga 

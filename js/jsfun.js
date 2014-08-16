@@ -5,6 +5,7 @@ $( document ).ready(function() {
 	$('html').click(function(event){
 		if($(event.target).closest('.popup').length == 0)
 			eliminaTuttiPopup();
+	 
 		
 	});
 });

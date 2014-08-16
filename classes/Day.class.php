@@ -37,8 +37,10 @@ class Day{
 	
 	/*
 	 * stampa() + handler per popup di creazione di un un nuovo evento su ogni giorno
+	 * Viene passato l'id numerico del giorno per tenere traccia del giorno in fase di posizionamento del popup
 	 */
-	 function stampaForAdmin(){
+	 function stampaForAdmin($id){
+	 	echo '<div class="new_event_btn" onclick="get_new_event_popup('.$id.','.$this->data['mday'].','.$this->data['mon'].','.$this->data['year'].')"></div>';
 	 	$this->stampa();
 		
 	 }

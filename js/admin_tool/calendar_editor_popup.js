@@ -1,8 +1,7 @@
 $( document ).ready(function() {
 	$('html').click(function(event){		
 		if($(event.target).closest('.calendar_editor_popup').length == 0)
-			removeElementByClass('calendar_editor_popup');	
-		
+			removeElementByClass('calendar_editor_popup');		
 	});
 	
 });

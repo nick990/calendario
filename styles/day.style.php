@@ -36,4 +36,5 @@
 	left:<?php echo ($WIDTH_DAY-25); ?>;
 	background-image:url('/calendar/images/plus1.png');
 	visibility:hidden;
+	cursor: pointer; cursor: hand;
 }

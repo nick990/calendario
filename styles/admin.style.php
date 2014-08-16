@@ -57,3 +57,58 @@
 	float:right;
 	margin-bottom:5px;
 }
+
+
+/*
+ * New Event Popup
+ */
+.new_event_popup{
+	font-size:14px;	
+	position:absolute;
+	top:0px;	
+	//width:250px;	
+	border:1px #9b9b9b solid;
+  	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+ 	//background-color:#D5EDD3;
+ 
+ 	visibility:hidden; 	
+}
+.nep_content{
+	//background-color:#D5EDD3;
+	background-color:#c9d6c7;
+	padding:5px;
+}
+.close_nep{
+	float:right;
+	height:15px;
+	width:15px;
+	background-image:url('../images/icon_x.gif');
+	cursor: pointer; cursor: hand;
+	margin:5px;
+}
+
+.nep_row{
+	height:25px;
+	min-height:25px;
+	position:absolute;
+	visibility:hidden;
+}
+.my_date_picker{
+	
+}
+#new_event_error{
+	color:<?php echo $COLOR_ERROR; ?>;
+}
+#date_time_pickers{
+	text-align:right;
+	padding-right:25px;
+	margin-bottom:20px;
+}
+#new_event_form #submit{
+	padding:3px;
+}
+textarea[name=description] {
+    resize: none;
+}
