@@ -7,6 +7,8 @@
 			<script type="text/javascript" src="js/admin_tool/calendar_editor_popup.js"></script> 
 			<script type="text/javascript" src="js/event_popup.js"></script>
 			<script type="text/javascript" src="js/admin_tool/new_event_popup.js"></script>
+			
+			
 	</head>
 	<body>
 		<?php

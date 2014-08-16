@@ -33,33 +33,35 @@ $('.day_out').mouseout(function(){
  * 
  */
 function get_new_event_popup(id,day,month,year){
-	removeElementByClass('new_event_popup');
-	removeElementByClass('nep_row');
-	
+	close_all_new_event_popup();	
 	$(".calendar_container").append("<div class='new_event_popup' id='new_event_popup_"+id+"'>"+"<div class='close_nep'></div><div class='nep_content'></div></div>");
-	$(".close_nep").click(function(){removeElementByClass('new_event_popup');removeElementByClass('nep_row');});
+	$(".close_nep").click(function(){close_all_new_event_popup();});
 	$(".nep_content").load('php/get_new_event_popup.php',{'day':day,'month':month,'year':year},function(){
-
-		$(document).ready(function() {			  
-		   //Date picker
-			   $('input.datepicker').Zebra_DatePicker({
-				//   direction: true,
-				   format: 'd M Y',
-				   days_abbr: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
-				   months:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
-				   first_day_of_week: 1,
-				   show_icon: false,
-				   show_clear_date: false,
-				   show_select_today: false,
-				   zero_pad: true,
-				   default_position: 'below'	
-			 	});
-			$('#new_event_form').submit(function(){
-				insert_new_event($('#name').val(),$('#description').val(),$('#date1').val(),$('#time_picker_1').val(),$('#date2').val(),$('#time_picker_2').val(),$('#calendar_select').val(),$('#giornaliero').is(':checked'));
-			});
-		});	
+		
+		 $('input.datepicker').Zebra_DatePicker({
+			//   direction: true,
+			format: 'd M Y',
+			days_abbr: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+			months:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+			first_day_of_week: 1,
+			show_icon: false,
+			show_clear_date: false,
+			show_select_today: false,
+			zero_pad: true,
+			default_position: 'below'	
+		 });
+		
+		$( document ).ready(function() {
+  			
+		});
 		
 		
+		$('#new_event_form').submit(function(){
+			insert_new_event($('#name').val(),$('#description').val(),$('#date_daily').val(),$('#date1').val(),$('#time_picker_1').val(),$('#date2').val(),$('#time_picker_2').val(),$('#calendar_select').val(),$('#giornaliero').is(':checked'));
+		});
+		
+		
+		$('#date_daily').hide();
 		
 		/*
 		 * Una volta riempito il contenuto lo posiziono e lo rendo visibile (di default il popup è invisibile)
@@ -106,34 +108,45 @@ function get_new_event_popup(id,day,month,year){
 	});
 }
 
-function insert_new_event(name,descrizione,date1,time1,date2,time2,calendar_id,daily_checked){
+function insert_new_event(name,descrizione,date_daily,date1,time1,date2,time2,calendar_id,daily_checked){
 	var mesi=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
 	var mesi_abbr=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
 	
 	var gg1,gg2,mm1,mm2,aaaa1,aaaa2,hh1,hh2,min1,min2;
-	//Estraggo la data di inizio
-	var aux=date1.split(' ');
-	gg1=aux[0];	
-	mm1=mesi_abbr.indexOf(aux[1])+1;
-	aaaa1=aux[2];
-	//Estraggo la data di fine
-	var aux=date2.split(' ');
-	gg2=aux[0];
-	mm2=mesi_abbr.indexOf(aux[1])+1;
-	aaaa2=aux[2];
-	//Se non è giornaliero estraggo gli orari di inizio e fine
-	if(daily_checked==false){
-		aux=time1.split(':');
-		hh1=aux[0];
-		min1=aux[1];
-		aux=time2.split(':');
-		hh2=aux[0];
-		min2=aux[1];
-	}
 	//controllo il tipo (per ora solo semplice e giornaliero)
 	var type='semplice';
 	if(daily_checked)
 		type='giornaliero';
+	//Se non è giornaliero estraggo le date e gli orari di inizio e fine
+	if(type=='semplice'){
+		//Estraggo la data di inizio
+		var aux=date1.split(' ');
+		gg1=aux[0];	
+		mm1=mesi_abbr.indexOf(aux[1])+1;
+		aaaa1=aux[2];
+		//Estraggo la data di fine
+		var aux=date2.split(' ');
+		gg2=aux[0];
+		mm2=mesi_abbr.indexOf(aux[1])+1;
+		aaaa2=aux[2];
+		//Estrago l'orario di  inizio
+		aux=time1.split(':');
+		hh1=aux[0];
+		min1=aux[1];
+		//Estraggo l'orario di fine'
+		aux=time2.split(':');
+		hh2=aux[0];
+		min2=aux[1];
+	}
+	//Se è giornaliero metto in gg1 mm1 aaaa1 la data 
+	if(type=='giornaliero'){
+		var aux=date_daily.split(' ');
+		gg1=aux[0];	
+		mm1=mesi_abbr.indexOf(aux[1])+1;
+		aaaa1=aux[2];
+	}
+	
+	
 	//Controllo degli errori
 	var error=0;
 	var d1=new Date(aaaa1, mm1-1, gg1, hh1, min1);
@@ -147,13 +160,15 @@ function insert_new_event(name,descrizione,date1,time1,date2,time2,calendar_id,d
 		error=1;
 		error_msg+='Nome : campo obbligatorio!\n';
 	}
-	if(hh1.length<2||min1.length<2){
-		error=1;
-		error_msg+='L\'ora di inizio non è nel formato hh:mm\n';
-	}
-	if(hh2.length<2||min2.length<2){
-		error=1;
-		error_msg+='L\'ora di fine non è nel formato hh:mm\n';
+	if(type=='semplice'){
+		if(hh1.length<2||min1.length<2){
+			error=1;
+			error_msg+='L\'ora di inizio non è nel formato hh:mm\n';
+		}
+		if(hh2.length<2||min2.length<2){
+			error=1;
+			error_msg+='L\'ora di fine non è nel formato hh:mm\n';
+		}
 	}
 	if(error!=0)
 		alert(error_msg);
@@ -161,7 +176,10 @@ function insert_new_event(name,descrizione,date1,time1,date2,time2,calendar_id,d
 		//Per fare il refresh passo il mese e l'anno dell'inizio dell'evento, poi dovrò impostare l'input text come non editabile
 		
 		$.post('/calendar/php/insert_event_to_db.php',{'gg1':gg1,'mm1':mm1,'aaaa1':aaaa1,'hh1':hh1,'min1':min1,'gg2':gg2,'mm2':mm2,'aaaa2':aaaa2,'hh2':hh2,'min2':min2,'name':name,'descrizione':descrizione,'calendar_id':calendar_id,'type':type},function(){
-			 $('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':mm1,'year':aaaa1});
+			$.when(close_all_new_event_popup()).then(function(){
+				$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':mm1,'year':aaaa1});		
+			});
+			
 		});
 	
 	}
@@ -192,9 +210,26 @@ function add_nep_arrow(pop,id,posizione_y){
 }
 function check_giornaliero(){
 	if($('#giornaliero').is(':checked')){
-		$('#date_time_pickers').hide();
+		$('#date_time_pickers_1').hide();
+		$('#date_time_pickers_2').hide();	
+		$('#date_daily').show();	
 	}else{
-		$('#date_time_pickers').show();
+		$('#date_time_pickers_1').show();
+		$('#date_time_pickers_2').show();
+		$('#date_daily').hide();
 	}
 	
+}
+function close_all_new_event_popup(){
+	$.when(destroy_all_datepickers()).then(function(){
+		removeElementByClass('new_event_popup');
+		removeElementByClass('nep_row');  		
+	});
+}
+function destroy_all_datepickers(){
+	if($('.datepicker').length != 0){
+		$('#date1').data('Zebra_DatePicker').destroy();
+		$('#date2').data('Zebra_DatePicker').destroy();
+		$('#date_daily').data('Zebra_DatePicker').destroy();
+	}
 }
