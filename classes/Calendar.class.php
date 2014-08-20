@@ -191,17 +191,12 @@ class Calendar{
 	  * Stampa il Calendario in vista mensile
 	  * Utilizzando una tabella 6x7 più le intestazioni
 	  */
-	  function stampaForAdmin(){
-	  		
-		
+	  function stampaForAdmin(){		
 		echo '<div class="menu">';
 			$this->stampaSwitchMese("true");
 			$this->stampaController("true");
 		echo '</div>';
-		
-		
-	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
-	  	
+		echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
 	  	for($i=0;$i<count($this->giorni);$i++){
 	  		echo '<td>';
 			if($i>=$this->giorniMesePrecedente&&$i<count($this->giorni)-$this->giorniMeseSuccessivo)
@@ -220,11 +215,7 @@ class Calendar{
 					echo '<tr>';
 			}
 	  	}
-		
-	  	
 		echo '</table>';
-		
-	
 	  }
 }//fine classe Calendario
 ?>

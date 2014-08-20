@@ -66,19 +66,19 @@
 	font-size:14px;	
 	position:absolute;
 	top:0px;	
-	//width:250px;	
+	width:450px;	
 	border:1px #9b9b9b solid;
   	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
- 	//background-color:#D5EDD3;
- 
- 	visibility:hidden; 	
+	//background-color:#E9DECC;
+	background-color:#F8F8F8;
+	//background-image:url('../images/form.jpg');
+	background-size:100% 100%;
+  	visibility:hidden; 	
 }
-.nep_content{
-	//background-color:#D5EDD3;
-	background-color:#c9d6c7;
-	padding:5px;
+.nep_content{	
+	padding:10px;
 }
 .close_nep{
 	float:right;
@@ -98,8 +98,10 @@
 .my_date_picker{
 	
 }
-#new_event_error{
+.new_event_error{
 	color:<?php echo $COLOR_ERROR; ?>;
+	padding:5px;
+	font-size:12px;
 }
 #date_time_pickers{
 	text-align:right;
@@ -111,4 +113,10 @@
 }
 textarea[name=description] {
     resize: none;
+}
+#label_fine{
+	margin-left:9px;
+}
+#name{
+	margin-bottom:15px;
 }

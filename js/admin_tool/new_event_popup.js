@@ -1,11 +1,12 @@
 $( document ).ready(function() {
-	$('html').click(function(event){
-		//if($(event.target).closest('.new_event_popup').length==0&&$(event.target).attr('class')!='new_event_btn')
-		//	removeElementByClass('new_event_popup');
-		//	removeElementByClass('nep_row');
-	 
-		
+	$(document).click(function(event){
+		event.stopPropagation();
+		if(event.target.className!='new_event_btn')	
+			if($(event.target).closest('.new_event_popup').length==0)
+				if($('.new_event_popup').length!=0)
+					close_all_new_event_popup();		
 	});
+	
 });
 
 /*
@@ -51,22 +52,23 @@ function get_new_event_popup(id,day,month,year){
 			default_position: 'below'	
 		 });
 		
-		$( document ).ready(function() {
-  			
-		});
 		
 		
 		$('#new_event_form').submit(function(){
 			insert_new_event($('#name').val(),$('#description').val(),$('#date_daily').val(),$('#date1').val(),$('#time_picker_1').val(),$('#date2').val(),$('#time_picker_2').val(),$('#calendar_select').val(),$('#giornaliero').is(':checked'));
 		});
 		
-		
+		//Inizialmente il check 'tutto il giorno' non è selezionato
 		$('#date_daily').hide();
 		
 		/*
 		 * Una volta riempito il contenuto lo posiziono e lo rendo visibile (di default il popup è invisibile)
 		*/
 		var pop=$('#new_event_popup_'+id);
+	
+		var pop_h=pop.outerHeight();
+		var pop_w=pop.outerWidth();	
+		pop.css('height',pop_h);
 		var pop_h=pop.outerHeight();
 		var pop_w=pop.outerWidth();		
 		var giorno=$("#day_"+id);
@@ -100,18 +102,13 @@ function get_new_event_popup(id,day,month,year){
 		pop.css('left',pop_left);
 		
 		pop.css("visibility","visible");
-		add_nep_arrow(pop,id,posizione_y);
-		
-		
-		
-		
+		add_nep_arrow(pop,id,posizione_y);		
 	});
 }
 
 function insert_new_event(name,descrizione,date_daily,date1,time1,date2,time2,calendar_id,daily_checked){
 	var mesi=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
 	var mesi_abbr=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
-	
 	var gg1,gg2,mm1,mm2,aaaa1,aaaa2,hh1,hh2,min1,min2;
 	//controllo il tipo (per ora solo semplice e giornaliero)
 	var type='semplice';
@@ -151,30 +148,26 @@ function insert_new_event(name,descrizione,date_daily,date1,time1,date2,time2,ca
 	var error=0;
 	var d1=new Date(aaaa1, mm1-1, gg1, hh1, min1);
 	var d2=new Date(aaaa2, mm2-1, gg2, hh2, min2);
-	error_msg='';
 	if(d1.getTime()>d2.getTime()){
 		error=1;
-		error_msg+='La data di fine deve essere successiva a quella di inizio!\n';
+		$('#error4').text('La data di fine deve essere successiva a quella di inizio');
 	}
 	if(name.length==0){
 		error=1;
-		error_msg+='Nome : campo obbligatorio!\n';
+		$('#error1').text('campo obbligatorio');
 	}
 	if(type=='semplice'){
-		if(hh1.length<2||min1.length<2){
+		if(!check_date(time1)){
 			error=1;
-			error_msg+='L\'ora di inizio non è nel formato hh:mm\n';
+			$('#error2').text('L\'ora non è nel formato (h)h:mm');
 		}
-		if(hh2.length<2||min2.length<2){
+		if(!check_date(time2)){
 			error=1;
-			error_msg+='L\'ora di fine non è nel formato hh:mm\n';
+			$('#error3').text('L\'ora non è nel formato (h)h:mm');
 		}
 	}
-	if(error!=0)
-		alert(error_msg);
-	else{
+	if(error==0){
 		//Per fare il refresh passo il mese e l'anno dell'inizio dell'evento, poi dovrò impostare l'input text come non editabile
-		
 		$.post('/calendar/php/insert_event_to_db.php',{'gg1':gg1,'mm1':mm1,'aaaa1':aaaa1,'hh1':hh1,'min1':min1,'gg2':gg2,'mm2':mm2,'aaaa2':aaaa2,'hh2':hh2,'min2':min2,'name':name,'descrizione':descrizione,'calendar_id':calendar_id,'type':type},function(){
 			$.when(close_all_new_event_popup()).then(function(){
 				$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':mm1,'year':aaaa1});		
@@ -182,11 +175,7 @@ function insert_new_event(name,descrizione,date_daily,date1,time1,date2,time2,ca
 			
 		});
 	
-	}
-	
-	
-   
-	
+	}	
 }
 function add_nep_arrow(pop,id,posizione_y){
 	pop.closest(".calendar_container").append('<div class="nep_row"></div>');
@@ -232,4 +221,10 @@ function destroy_all_datepickers(){
 		$('#date2').data('Zebra_DatePicker').destroy();
 		$('#date_daily').data('Zebra_DatePicker').destroy();
 	}
+}
+function check_date(date){
+	var time_pattern=/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+	if(!time_pattern.test(date))
+		return false;
+	return true;
 }
