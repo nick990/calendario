@@ -1,10 +1,19 @@
 $( document ).ready(function() {
 	$(document).click(function(event){
-		event.stopPropagation();
-		if(event.target.className!='new_event_btn')	
-			if($(event.target).closest('.new_event_popup').length==0)
-				if($('.new_event_popup').length!=0)
-					close_all_new_event_popup();		
+		//event.stopPropagation();	
+		 /* 
+		 * Se clicco fuori dal popup per la creazione di un evento (.new_event_btn) 
+		 * elimino tutti i popup di questo tipo se aperti.
+		 * 
+		 * Ignoro i click sul bottone per l'apertura di un popup per via dell'esecuzione asincrona ed dai Zebra date piker
+		 */
+		if((event.target.className!='new_event_btn')/*&&($(event.target).closest('.Zebra_DatePicker dp_visible').length==0)*/)	
+			{	
+			if($(event.target).closest('.Zebra_DatePicker').length==0)	
+				if($(event.target).closest('.new_event_popup').length==0)
+					if($('.new_event_popup').length!=0)
+						close_all_new_event_popup();
+			}		
 	});
 	
 });

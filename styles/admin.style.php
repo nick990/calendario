@@ -70,11 +70,8 @@
 	border:1px #9b9b9b solid;
   	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
-	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
-	//background-color:#E9DECC;
-	background-color:#F8F8F8;
-	//background-image:url('../images/form.jpg');
-	background-size:100% 100%;
+	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);	
+	background-color:<?php echo $POP_BKG; ?>;	
   	visibility:hidden; 	
 }
 .nep_content{	

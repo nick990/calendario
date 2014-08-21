@@ -32,6 +32,6 @@
 	
 	$POPUP_BC="#c9d6c7";
 	$NUMBER_BC="#eef4ed";
-	
+	$POP_BKG="#F8F8F8";
 	$COLOR_ERROR="#d64242";
 ?>

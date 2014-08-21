@@ -50,13 +50,10 @@
   	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
- 	//background-color:#D5EDD3;
- 
+ 	background-color:<?php echo $POP_BKG; ?>; 
  	visibility:hidden; 	
 }
 .popup_content{
-	//background-color:#D5EDD3;
-	background-color:#c9d6c7;
 	padding:5px;
 }
 .chiudi{
