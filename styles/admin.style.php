@@ -92,9 +92,7 @@
 	position:absolute;
 	visibility:hidden;
 }
-.my_date_picker{
-	
-}
+
 .new_event_error{
 	color:<?php echo $COLOR_ERROR; ?>;
 	padding:5px;
@@ -110,9 +108,6 @@
 }
 textarea[name=description] {
     resize: none;
-}
-#label_fine{
-	margin-left:9px;
 }
 #name{
 	margin-bottom:15px;
