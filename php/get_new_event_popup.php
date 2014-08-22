@@ -18,6 +18,7 @@
 		<input type="text" size="15" maxlength="15" name="name" id="name" placeholder="Nome evento">
 		<label class="new_event_error" id="error1"></label>
 	</div>
+	<label class="new_event_error" id="error2"></label>
 	<div>
 		<input type="text" name="date1" id="date1" class="datepicker" size="11"  value="<?php echo $day.' '.$mesi[$month-1].' '.$year ?>"> 
 		<input type="text" name="time1" id="time1" class="time_picker" size="5" maxlength="5" placeholder="hh:mm">
@@ -25,6 +26,7 @@
 		<input type="text" name="date2" id="date2" class="datepicker" size="11"  value="<?php echo $day.' '.$mesi[$month-1].' '.$year ?>"> 
 		<input type="text" name="time2" id="time2" class="time_picker" size="5" maxlength="5" placeholder="hh:mm">
 	</div>
+		<label class="new_event_error" id="error3"></label>
 	<div>
 		<input type="checkbox" name="daily" id="daily" checked="checked" onchange="javascript:check_giornaliero()">
 		Tutto il giorno
@@ -41,69 +43,72 @@
 			?>
 		</select>
 	</div>
+	<div>
+		<textarea name="description" id="description" max_length="50" rows="5" cols="40" placeholder="Descrizione (MAX 50)"></textarea>
+	</div>
+	<input id="submit" type="submit" value="Inserisci" />
 </form>
 <script type="text/javascript">
 	$( document ).ready(function() {
+		mesi=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+		mesi_abbr=['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
 		/*
-		 * Giornaliero
+		 * Imposto i date picker
+		 */
+		 $('input.datepicker').Zebra_DatePicker({
+			//   direction: true,
+			format: 'd M Y',
+			days_abbr: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+			months:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+			first_day_of_week: 1,
+			show_icon: false,
+			show_clear_date: false,
+			show_select_today: false,
+			zero_pad: true,
+			default_position: 'below'	
+		 });		
+		/*
+		 * Giornaliero, inizialmente è checked quindi i due input time sono nascosti
 		 */		
 		$('#time1').hide();
 		$('#time2').hide();
 		/*
-		 * Gestione degli errori
+		 * Imposto il numero massimo di carratteri per la descrizione
 		 */
-		errors=false;
-		error1=$('#error1');
-		var name_input=$('#name');
-		var hh1_input=$('#time1');
-		var hh2_input=$('#time2');
-		//Nome campo obbligatorio
-		name_input.bind('change keyup',function(){
-			if($.trim(name_input.val()).length==0){
-				errors=true;
-				error1.text('Nome obbligatorio');
-			}else{
-				errors=false;
-				error1.text('');
-			}
+		var des=$('#description');
+		var max = parseInt(des.attr('max_length'));
+		des.bind('change keyup keydown',function(){
+			var len=des.val().length;
+			if(len>max)
+				des.val(des.val().substr(0,max));
 		});
 		/*
-		 * Formato Orario
-		 * Diventa rosso onChange errato, ritorna bianco non appena viene corretto
+		 * Controllo degli errori PRE Submit
 		 */
-		hh1_input.change(function(){
-			if(check_time(hh1_input.val())==false){
-				errors=true;
-				hh1_input.css('background-color','#FFF0F0');
-			}else{
-				errors=false;
-				hh1_input.css('background-color','WHITE');
-			}
+		$('.datepicker').focus(function(){
+			set_error_date();
 		});
-		hh1_input.keyup(function(){
-			if(check_time(hh1_input.val())==true){
-				errors=false;
-				hh1_input.css('background-color','WHITE');
-			}
+		$('#time1').change(function(){
+			set_error_time(1,false);
+			set_error_date();
 		});
-		hh2_input.change(function(){
-			if(check_time(hh2_input.val())==false){
-				errors=true;
-				hh2_input.css('background-color','#FFF0F0');
-			}else{
-				errors=false;
-				hh2_input.css('background-color','WHITE');
-			}
+		$('#time2').change(function(){
+			set_error_time(2,false);
+			set_error_date();	
 		});
-		hh2_input.keyup(function(){
-			if(check_time(hh2_input.val())==true){
-				errors=false;
-				hh2_input.css('background-color','WHITE');
-			}
+		$('#daily').change(function(){			
+			if($('#daily').is(':checked'))
+				$('.time_picker').val('');
+			set_error_date();
 		});
 		/*
-		 * 
-		 */
+		 * Submit
+		 */		
+		$('#new_event_form').submit(function(){
+			insert_new_event();
+		});
 	});
+	
+	
 </script>
 	

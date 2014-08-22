@@ -66,7 +66,7 @@
 	font-size:14px;	
 	position:absolute;
 	top:0px;	
-	width:450px;	
+	width:400px;	
 	border:1px #9b9b9b solid;
   	webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
@@ -98,17 +98,21 @@
 	padding:5px;
 	font-size:12px;
 }
-#date_time_pickers{
-	text-align:right;
-	padding-right:25px;
-	margin-bottom:20px;
+.datepicker{
+	width:100px;
+	text-align:center;
+}
+.time_picker{
+	width:50px;
+	text-align:center;
 }
 #new_event_form #submit{
 	padding:3px;
 }
 textarea[name=description] {
     resize: none;
+   
 }
-#name{
-	margin-bottom:15px;
+#new_event_form div{
+	margin-bottom:10px;
 }
