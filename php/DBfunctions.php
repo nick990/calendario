@@ -30,14 +30,14 @@
 		return $eventi;
 	}
 	/*
-	* Extracts all events from DB which start on day $gg/$mm/$aaaa and belong to chechek calendar
+	* Extracts all events from DB which start on day $gg/$mm/$aaaa and belong to checked calendar
 	*/
 	function extractEventsInCheckedCalendars($gg,$mm,$aaaa){
 		$eventi=array();
-		//If there aren't checked calendars returns estraiEventi()
+		//If there aren't checked calendars returns 
 		$num_cals=count($_SESSION['cals_id']);
 		if($num_cals==0)
-			return;// estraiEventi($gg,$mm,$aaaa);
+			return;
 		//Else 
 		//Build the string "(id1,id2,ecc...)" for mysql query
 		$id_range='(';

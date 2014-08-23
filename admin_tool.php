@@ -14,7 +14,6 @@
 		<?php
 			require "php/session_initial.php";
 			require 'php/link_CSS.php';
-			//require_once 'php/utils.php';
 			if (isset($_SESSION['user_id'])&&empty($_SESSION['admin'])) {
 		  		echo "Solo gli utenti amministratori possono accedere a questa pagina";
 				echo "<a id='logout_button' href='javascript:logout()'>LOGOUT</a>";

@@ -3,11 +3,9 @@
 	require("/opt/lampp/htdocs/calendar/config.php");
 ?>
 
-.event,.daily_event{ 	
-	padding-left:5px;
-	
-	font-size:11px;
-	
+.event,.daily_event,.start_event{ 	
+	padding-left:5px;	
+	font-size:11px;	
 	width:<?php echo $WIDTH_EVENT; ?>;
 	height:<?php echo $HEIGHT_EVENT; ?>;
 	line-height:<?php echo $LINE_HEIGHT_EVENT; ?>;
@@ -27,19 +25,17 @@
 	 text-decoration: none;
 	 color:#ce7165;
 }
-.daily_event a{
+.daily_event a,.start_event a,.end_event a{
  text-decoration: none;
-	 color:#666666;
+ color:#666666;
 }
-.daily_event{
-	
+.daily_event{	
 	background-color:#FEF9DC;
 	border: 1px solid #FBE983;
-	
-	overflow-x:hidden;
-	
-	
+		
 }
+
+
 
 .popup{
 	font-size:14px;	

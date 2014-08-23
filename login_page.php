@@ -13,7 +13,7 @@
     } 
 		 if (isset($_SESSION['user_id'])) {
 		  		require 'php/logout.php';
-			}	
+			}
 		?>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>

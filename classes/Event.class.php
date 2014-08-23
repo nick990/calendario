@@ -28,6 +28,12 @@ class Event{
 			case 'giornaliero':
 				$this->StampaGiornaliero();
 				break;
+			case 'inizio':
+				$this->StampaInizio();
+				break;
+			case 'fine':
+				$this->StampaFine();
+				break;
 			default:
 				break;
 		}
@@ -42,6 +48,20 @@ class Event{
 	function StampaGiornaliero(){
 		echo '<div class="daily_event" id="evento'.$this->id.'">';
 		echo '<a href="javascript:popupEventById('.$this->id.')">'.$this->nome.'</a>';
+		echo '</div>';
+	}
+	function StampaInizio(){
+		$ora_inizio_format=date('H:i',$this->data_inizio_ts);
+		//<b>'.$ora_inizio_format.'</b>';
+		echo '<div class="daily_event" id="evento'.$this->id.'">';
+		echo '<a href="javascript:popupEventById('.$this->id.')">'.$this->nome.'</a>';
+		echo '</div>';
+	}
+	function StampaFine(){
+		$ora_inizio_format=date('H:i',$this->data_inizio_ts);
+		echo '<div class="daily_event" id="evento'.$this->id.'">';		
+				//echo '<b>'.$ora_inizio_format.'</b>';		
+				echo '<a href="javascript:popupEventById('.$this->id.')">'.$this->nome.'</a>';			
 		echo '</div>';
 	}
 }
