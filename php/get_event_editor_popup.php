@@ -16,7 +16,7 @@
 <!DOCTYPE html>	
 <script type="text/javascript" src="/calendar/datepicker/public/javascript/zebra_datepicker.js"></script>
 <link rel="stylesheet" href="/calendar/datepicker/public/css/default.css" type="text/css">
-<form id="event_editor_form" action="javascript:edit_event(<?php echo $id;?>);">
+<form id="event_editor_form" action="javascript:void(0);">
 	<div>
 		<input type="text" size="15" maxlength="15" name="name" id="name" placeholder="Nome evento" value="<?php echo $name;?>">
 		<label class="new_event_error" id="error1"></label>

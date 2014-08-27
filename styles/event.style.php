@@ -91,6 +91,15 @@
 	cursor: pointer; cursor: hand;
 	top:0;
 }
+.remove_event{
+	position:absolute;
+	margin-top:5px;
+	height:15px;
+	width:15px;
+	background-image:url('../images/delete.png');
+	cursor: pointer; cursor: hand;
+	top:0;
+}
 
 
 

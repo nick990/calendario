@@ -64,20 +64,20 @@ function logout(){
 /*
  * Cambio la funzione js da chiamare quando clicco sul link di un evento
  */
-function changeEventsToEventsForAdmin(){
+function changeEventsToEventsForAdmin(month,year){
 	var events=$('.event');
 	events.each(function( index ) {
-		$('#'+$(this).attr('id')+' a').attr("href", "javascript:popup_event_for_admin("+$( this ).attr('event_id')+")");;
+		$('#'+$(this).attr('id')+' a').attr("href", "javascript:popup_event_for_admin("+$( this ).attr('event_id')+","+month+","+year+")");;
 	});
 }
 function getCalendarForAdmin(){
 	$('.editor').load('php/getCalendarForAdmin.php',function(){
-		changeEventsToEventsForAdmin();
+		changeEventsToEventsForAdmin(((new Date).getMonth()-1),(new Date).getFullYear());
 	});	
 	}
 function getCalendarForAdmin(month,year){
 	$('.editor').load('php/getCalendarForAdmin.php',{'month':month,'year':year},function(){
-		changeEventsToEventsForAdmin();
+		changeEventsToEventsForAdmin(month,year);
 	});
 }
 function getPrevCalendarForAdmin(month,year){
@@ -89,7 +89,7 @@ function getPrevCalendarForAdmin(month,year){
 	}
 	//
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
-		changeEventsToEventsForAdmin();
+		changeEventsToEventsForAdmin(month,year);
 	});	
 }
 function getNextCalendarForAdmin(month,year){
@@ -100,7 +100,7 @@ function getNextCalendarForAdmin(month,year){
 		year++;
 	}
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
-		changeEventsToEventsForAdmin();
+		changeEventsToEventsForAdmin(month,year);
 	});	
 }
 /*
@@ -136,6 +136,6 @@ function removeElementByClass(aclass){
 }
 function refresh_cc_for_admin(month,year){
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
-		changeEventsToEventsForAdmin();
+		changeEventsToEventsForAdmin(month,year);
 	});	
 	}		

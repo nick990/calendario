@@ -11,17 +11,20 @@ $( document ).ready(function() {
 					close_all_event_editor_popup();
 	});	
 });
-function popup_event_for_admin(id){
+function popup_event_for_admin(id,month,year){
 	$.when(popupEventById(id)).then(function(){
 		pop=$('#popup_'+id);
 		//Aggiungo il bottone per l'apertura dell'editor
-		pop.append('<a href="javascript:get_event_editor('+id+')" class="edit_event" id="edit_event_'+id+'" ></a>');
+		pop.append('<a href="javascript:get_event_editor('+id+','+month+','+year+')" class="edit_event" id="edit_event_'+id+'" ></a>');
 		edit=$('#edit_event_'+id);
-		edit.css('left',pop.outerWidth()-20-10-edit.outerWidth());		
+		edit.css('left',pop.outerWidth()-20-10-edit.outerWidth());
+		pop.append('<a href="javascript:remove_event_from_db('+id+','+month+','+year+')" class="remove_event" id="remove_event_'+id+'" ></a>');
+		remove=$('#remove_event_'+id);
+		remove.css('left',edit.position().left-remove.outerWidth()-10);		
 	});	
 	return;
 }
-function get_event_editor(id){
+function get_event_editor(id,month,year){
 	eliminaTuttiPopup();
 	$(".calendar_container").append("<div class='event_editor_popup' id='event_editor_popup_"+id+"'><div class='close_eep'></div><div class='eep_content'></div></div>");
 	$(".close_eep").click(function(){close_all_event_editor_popup();});	
@@ -29,7 +32,16 @@ function get_event_editor(id){
 		var pop=$('#event_editor_popup_'+id);
 		set_position_eep(pop);
 		pop.css('visibility','visible');
+		
+		$('#event_editor_form').submit(function(){
+			edit_event(id,month,year);
+		});
 	});	
+}
+function remove_event_from_db(id,month,year){
+	$.post('/calendar/php/delete_event.php',{'id':id},function(){
+				refresh_cc_for_admin(month,year);
+	});
 }
 function close_all_event_editor_popup(){
 	$.when(destroy_eep_datepicker()).then(function(){
@@ -51,7 +63,7 @@ function set_position_eep(pop){
 	pop.css('top',pop_top);
 	pop.css('left',pop_left);
 }
-function edit_event(id){
+function edit_event(id,month,year){
 	var errors=set_errors_eep();
 		if(!errors){
 			var gg,mm,aaaa,hh1,min1,hh2,min2,name,descriptiom,type,calendar_id;
@@ -90,7 +102,7 @@ function edit_event(id){
 			hh2=pad_zero_h(hh2);
 			$.post('/calendar/php/update_event.php',{'id':id,'gg':gg,'mm':mm,'aaaa':aaaa,'hh1':hh1,'min1':min1,'hh2':hh2,'min2':min2,'name':name,'description':description,'calendar_id':calendar_id,'type':type},function(){
 				$.when(close_all_event_editor_popup()).then(function(){
-					refresh_cc_for_admin(mm,aaaa);
+					refresh_cc_for_admin(month,year);
 				});
 			});
 			return;
