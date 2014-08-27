@@ -141,8 +141,7 @@ class Calendar{
 	   /*
 	    * Stampa il div per la selezione dei calendari
 	    */
-	   private function stampaController($admin=""){
-	   		
+	   private function stampaController($admin=""){	   		
 	    	echo "<div class='controller'>";
 	    		$query="SELECT * FROM calendario_db.calendari";
 				$result = mysql_query($query);

@@ -7,8 +7,7 @@
 			<script type="text/javascript" src="js/admin_tool/calendar_editor_popup.js"></script> 
 			<script type="text/javascript" src="js/event_popup.js"></script>
 			<script type="text/javascript" src="js/admin_tool/new_event_popup.js"></script>
-			
-			
+			<script type="text/javascript" src="js/admin_tool/event_editor.js"></script>			
 	</head>
 	<body>
 		<?php
@@ -28,13 +27,9 @@
 		<br />
 		<a id="logout_button" href="javascript:logout()">LOGOUT</a>
 		<br />
-		<div class='editor'></div>
-		
-		<script type="text/javascript">
-			getCalendarForAdmin();			
-		</script>
-		
-	
+		<div class='editor'></div>		
+		<script type="text/javascript">		
+				getCalendarForAdmin();			
+		</script>	
 	</body>
-	
 </html>

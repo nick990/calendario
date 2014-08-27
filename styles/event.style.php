@@ -3,7 +3,7 @@
 	require("/opt/lampp/htdocs/calendar/config.php");
 ?>
 
-.event,.daily_event,.start_event{ 	
+.simple_event,.daily_event,.start_event{ 	
 	padding-left:5px;	
 	font-size:11px;	
 	width:<?php echo $WIDTH_EVENT; ?>;
@@ -16,12 +16,12 @@
 	
 	overflow: hidden;
 }
-.event {
+.simple_event {
 	padding:0px;
 	margin-left:10px;
 	
 }
-.event a{
+.simple_event a{
 	 text-decoration: none;
 	 color:#ce7165;
 }
@@ -82,7 +82,15 @@
 	position:absolute;
 	visibility:hidden;
 }
-
+.edit_event{
+	position:absolute;
+	margin-top:5px;
+	height:15px;
+	width:15px;
+	background-image:url('../images/icon_edit.gif');
+	cursor: pointer; cursor: hand;
+	top:0;
+}
 
 
 

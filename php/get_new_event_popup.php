@@ -88,7 +88,11 @@
 		$('.datepicker').focus(function(){
 			set_error_date();
 		});
-		$('#time1').change(function(){
+		$('.time_picker').change(function(){
+			set_errors_time(false);
+				set_error_date();
+		});
+/*		$('#time1').change(function(){
 			set_error_time(1,false);
 			set_error_date();
 		});
@@ -96,7 +100,7 @@
 			set_error_time(2,false);
 			set_error_date();	
 		});
-		$('#daily').change(function(){			
+	*/	$('#daily').change(function(){			
 			if($('#daily').is(':checked'))
 				$('.time_picker').val('');
 			set_error_date();

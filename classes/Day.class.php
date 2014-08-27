@@ -28,9 +28,7 @@ class Day{
 			echo '<div class="events">';
 		if(count($this->eventi)!=0)
 			foreach ($this->eventi as $evento) {
-			//	echo '<div class="evento">';
 				$evento->stampa();
-			//	echo '</div>';
 			}
 		echo '</div>';
 	 }

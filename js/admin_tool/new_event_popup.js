@@ -2,12 +2,12 @@ $( document ).ready(function() {
 	$(document).click(function(event){
 		//event.stopPropagation();	
 		 /* 
-		 * Se clicco fuori dal popup per la creazione di un evento (.new_event_btn) 
+		 * Se clicco fuori dal popup per la creazione di un evento 
 		 * elimino tutti i popup di questo tipo se aperti.
 		 * 
 		 * Ignoro i click sul bottone per l'apertura di un popup per via dell'esecuzione asincrona ed dai Zebra date piker
 		 */
-		if((event.target.className!='new_event_btn')/*&&($(event.target).closest('.Zebra_DatePicker dp_visible').length==0)*/)	
+		if((event.target.className!='new_event_btn'))	
 			{	
 			if($(event.target).closest('.Zebra_DatePicker').length==0)	
 				if($(event.target).closest('.new_event_popup').length==0)
@@ -71,10 +71,11 @@ function close_all_new_event_popup(){
 	});
 }
 function destroy_all_datepickers(){
-	if($('.datepicker').length != 0){
+	if($('#new_event_form .datepicker').length != 0){
 		$('#date1').data('Zebra_DatePicker').destroy();
 		$('#date2').data('Zebra_DatePicker').destroy();
 	}
+	
 }
 
 /*
@@ -144,7 +145,7 @@ function insert_new_event(){
 			//alert("nome:'"+name+"' \ndescrizione:'"+description+"'\ntipo:"+type+"\n"+gg1+"-"+mm1+"-"+aaaa1+" "+hh1+":"+min1+"\n"+gg2+"-"+mm2+"-"+aaaa2+" "+hh2+":"+min2+"\n");
 			$.post('/calendar/php/insert_event_to_db.php',{'gg1':gg1,'mm1':mm1,'aaaa1':aaaa1,'hh1':hh1,'min1':min1,'gg2':gg2,'mm2':mm2,'aaaa2':aaaa2,'hh2':hh2,'min2':min2,'name':name,'descrizione':description,'calendar_id':calendar_id,'type':type},function(){
 				$.when(close_all_new_event_popup()).then(function(){
-					$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':mm1,'year':aaaa1});		
+					refresh_cc_for_admin(mm1,aaaa1);
 				});
 			});
 		}
@@ -166,7 +167,7 @@ function pad_zero_h(h){
 function setErrors(){		
 	var errors=false;
 	var errors_time2=false;
-	errors=set_error_date()|set_error_name()|set_error_time(1,true)|set_error_time(2,true);
+	errors=set_error_date()|set_error_name()|set_errors_time(true);
 	return errors;
 }
 /*
@@ -183,24 +184,20 @@ function set_error_name(){
 		error1.text('');
 	return error;
 }
-/*
- * Formato Orario
- * Un orario errato può dare errore solo nel caso di evento NON Giornaliero
- */
-function set_error_time(id,on_submit){
+function set_errors_time(on_submit){
 	var error=false;
 	var type='semplice';
 	var daily_check=$('#daily');
 	if(daily_check.is(':checked'))
 		type='giornaliero';
-	var time_input=$('#time'+id);
-	if(type=='semplice'){
-		
-		if(time_input.val().length!=0&&!check_time(time_input.val())){
+	var time1=$('#time1');
+	var time2=$('#time2');
+	if(type=='semplice'){		
+		if((time1.val().length!=0&&!check_time(time1.val()))||(time2.val().length!=0&&!check_time(time2.val()))){
 			$('#error3').text('Inserire ora nel formato corretto');
 			error=true;
 		}else $('#error3').text('');
-		if(time_input.val().length==0){
+		if(time1.val().length==0||time2.val().length==0){
 			error=true;
 			if(on_submit)
 				$('#error3').text('Inserire ora nel formato corretto');
