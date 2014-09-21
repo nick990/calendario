@@ -5,9 +5,11 @@
 	$mesi=array("Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic");
 	global $mesi_completi;
 	$mesi_completi=array("Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre");
+	global $giorni_completi;
+	$giorni_completi=array("Domenica","Lunedi","Martedi","Mercoledi","Giovedi","Venerdi","Sabato");
 	global $anno_min,$anno_max;
 	$anno_min=2014;
-	$anno_max=2015;
+	$anno_max=3000;
 	/*
 	 * Funzione di autoload per il caricamento automatico delle classi php
 	 */
@@ -46,4 +48,17 @@
 		$mm=$aux[1];
 		$aaaa=$aux[2];
 	}
+	
+	/*
+	 * Return the array made of the days between twp given dates
+	 */
+	 function get_days_in_range($gg1,$mm1,$aaaa1,$gg2,$mm2,$aaaa2){
+	 	$days=array();
+		while($gg1!=$gg2||$mm1!=$mm2||$aaaa1!=$aaaa2){
+			$days[]=new Day($gg1,$mm1,$aaaa1);
+			next_date($gg1, $mm1, $aaaa1);
+		}
+		$days[]=new Day($gg2,$mm2,$aaaa2);
+		return $days;
+	 }
 ?>

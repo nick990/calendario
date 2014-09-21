@@ -8,8 +8,7 @@ class Day{
 	 * Costruttore, instanzia un nuovo giorno dato gg/mm/aaaa (numerici).
 	 */
 	 function __construct($gg="",$mm="",$aaaa=""){
-	 	$this->data=getdate(mktime(0,0,0,$mm,$gg,$aaaa));
-		
+	 	$this->data=getdate(mktime(0,0,0,$mm,$gg,$aaaa));		
 		$this->eventi=extractEventsInCheckedCalendars($gg, $mm, $aaaa);
 	 }
 	 
@@ -42,6 +41,32 @@ class Day{
 	 	$this->stampa();
 		
 	 }
+	
+	
+	
+	function stampa_for_print_calendar($calendar_id){
+		global $giorni_completi,$mesi_completi;
+		echo '<td class="date">';
+			echo '<div class="number">';
+				echo $this->data['mday'];
+			echo '</div>';
+			echo '<div class="day">';
+				echo $giorni_completi[$this->data['wday']];
+			echo '</div>';
+			echo '<div class="year">';
+				echo $mesi_completi[--$this->data['mon']].' '.$this->data['year'];
+			echo '</div>';
+		echo '</td>';
+		echo '<td class="events">';
+			//svuoto l'array eventi nel caso fosse stato riempito nel costruttore
+			$this->eventi=array();
+			$this->eventi=extractEventsByCalendarId($this->data['mday'],++$this->data['mon'],$this->data['year'],$calendar_id);
+			if(count($this->eventi)!=0)
+				foreach ($this->eventi as $evento) {
+					$evento->stampa_for_print_calendar();
+				}
+		echo '</td>';
+	}
 	
 	function getWDay(){
 	 	return $this->data['wday'];

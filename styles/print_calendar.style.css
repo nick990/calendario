@@ -1,0 +1,38 @@
+.table_for_print{
+    border-collapse: collapse;	
+}
+.table_for_print th, .table_for_print td{
+	border: 2px solid black;
+}
+.table_for_print td{
+	padding:9px;
+	padding-bottom:0px;
+}
+.date{
+	width:100px;
+	text-align:center;
+}
+.number{
+	font-size:30px;
+}
+.day{
+	font-size:18px;
+}
+.year{
+	font-size:12px;
+	margin-top:3px;
+	margin-bottom:9px;
+}
+
+.events{
+	width:700px;
+	text-align:left;
+	vertical-align:top;
+	
+}
+.events .giornaliero{
+	font-weight:bold;
+}
+.events .giornaliero,.events .semplice{
+	margin-bottom:9px;
+}

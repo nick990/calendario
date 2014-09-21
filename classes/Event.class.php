@@ -19,7 +19,17 @@ class Event{
 		$this->data_inizio_ts=strtotime($this->data_inizio);
 		$this->data_fine_ts=strtotime($this->data_fine);
 	}
+	function stampa_for_print_calendar(){
+		echo '<div class="'.$this->tipo.'">';
+			if($this->tipo=='semplice'){
+				$ora_inizio_format=date('H:i',$this->data_inizio_ts);
+				$ora_fine_format=date('H:i',$this->data_fine_ts);
+				echo $ora_inizio_format.' - '.$ora_fine_format.' ';
+			}
+			echo $this->nome;
+		echo '</div>';
 	
+	}
 	function stampa(){
 		switch($this->tipo){
 			case 'semplice':

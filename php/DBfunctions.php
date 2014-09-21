@@ -29,6 +29,9 @@
 		}
 		return $eventi;
 	}
+	
+	
+	
 	/*
 	* Extracts all events from DB which start on day $gg/$mm/$aaaa and belong to checked calendar
 	*/
@@ -55,6 +58,17 @@
 			$eventi[]=$newEvento;
 		}
 		return $eventi;
+	}
+	function extractEventsByCalendarId($gg,$mm,$aaaa,$calendar_id){
+		$eventi=array();
+		$query="SELECT * FROM calendario_db.eventi WHERE eventi.data_inizio BETWEEN '$aaaa-$mm-$gg 00:00' AND '$aaaa-$mm-$gg 23:59' AND eventi.id_calendario=".$calendar_id." ORDER BY data_inizio,tipo";
+		$result = mysql_query($query);
+		while ($array = mysql_fetch_array($result))
+		{
+			$newEvento=new Event($array['id'],$array['data_inizio'],$array['data_fine'],$array['nome'],$array['descrizione'],$array['tipo']);
+			$eventi[]=$newEvento;
+		}
+		return $eventi;	
 	}
 	/*
 	 * true: calendar exists

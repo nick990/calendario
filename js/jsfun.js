@@ -46,11 +46,13 @@ function checkbox_changed(admin,id,month,year){
 	var $check = $("input[name='checkbox_"+id+"']");
     if ($check.prop('checked')){
     	$('.calendar_container').load('php/addCalsId.php',{'admin':admin,'id':id,'month':month,'year':year},function(){
-    		changeEventsToEventsForAdmin();
+    		if(admin==true)
+    			changeEventsToEventsForAdmin();
     	});
     }else{
     	$('.calendar_container').load('php/removeCalsId.php',{'admin':admin,'id':id,'month':month,'year':year},function(){
-    		changeEventsToEventsForAdmin();
+    		if(admin==true)
+    			changeEventsToEventsForAdmin();
     	});
     }
 
