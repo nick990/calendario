@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/print_calendar.style.css"/>
 <title>Calendario</title>
+
+</head>
+
+<body>
 <?php
 	require_once('php/utils.php');
 	require_once('php/DBfunctions.php');
@@ -23,24 +28,33 @@
 	$mm2="07";
 	$aaaa2="2014";	
 	
-	$calendar_id=2;
+	$calendar_id=5;
+	
+	$description=true;
 	
 	$days=get_days_in_range($gg1,$mm1,$aaaa1,$gg2,$mm2,$aaaa2);
 	
 	echo '<table class="table_for_print">';
 		foreach ($days as $day) {
 			echo '<tr>';	
-				$day->stampa_for_print_calendar($calendar_id);
+				$day->stampa_for_print_calendar($calendar_id,$description);
 			echo '</tr>';
 		}
 	echo '</table>';
 	
 	
 ?>
-</head>
-
-<body>
-
 </body>
-
+<script type="text/javascript">
+	$( document ).ready(function() {
+	/*	$('.table_for_print tr .event').each(function(i) {
+			if(i%2==0){
+				$(this).css('background-color','#eeeeee');
+			}
+		});*/
+		
+		
+		
+	});
+</script>
 </html>

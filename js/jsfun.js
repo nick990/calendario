@@ -8,10 +8,18 @@ $( document ).ready(function() {
 	 
 		
 	});
+
+	
+
+	
+	
+	
+//	div.toggle('slow');
 });
 
 function getCalendar(){
 	$('.calendar_container').load('php/getCalendar.php');
+
 }
 function getCalendar(month,year){
 	$('.calendar_container').load('php/getCalendar.php',{'month':month,'year':year},function(){
@@ -25,7 +33,9 @@ function getPrevCalendar(month,year){
 		month=12;
 		year--;
 	}
+	vis=$('.controller_content').css('visibility');
 	$('.calendar_container').load('php/getCalendar.php',{'month':month,'year':year},function(){
+		$('.controller_content').css('visibility',vis);
 		
 	});
 }
@@ -36,21 +46,25 @@ function getNextCalendar(month,year){
 		month=1;
 		year++;
 	}
+	vis=$('.controller_content').css('visibility');
 	$('.calendar_container').load('php/getCalendar.php',{'month':month,'year':year},function(){
-		
+			$('.controller_content').css('visibility',vis);
 	});
 	
 }
 
 function checkbox_changed(admin,id,month,year){
 	var $check = $("input[name='checkbox_"+id+"']");
+	vis=$('.controller_content').css('visibility');
     if ($check.prop('checked')){
     	$('.calendar_container').load('php/addCalsId.php',{'admin':admin,'id':id,'month':month,'year':year},function(){
+    		$('.controller_content').css('visibility',vis);
     		if(admin==true)
     			changeEventsToEventsForAdmin();
     	});
     }else{
     	$('.calendar_container').load('php/removeCalsId.php',{'admin':admin,'id':id,'month':month,'year':year},function(){
+    		$('.controller_content').css('visibility',vis);
     		if(admin==true)
     			changeEventsToEventsForAdmin();
     	});
@@ -89,10 +103,14 @@ function getPrevCalendarForAdmin(month,year){
 		month=12;
 		year--;
 	}
-	//
+	getCalendarForAdmin(month,year);
+	/*
+	vis=$('.controller_content').css('visibility');
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
+		$('.controller_content').css('visibility',vis);
 		changeEventsToEventsForAdmin(month,year);
 	});	
+	*/
 }
 function getNextCalendarForAdmin(month,year){
 	if(month!=12&&year!=3000)
@@ -101,9 +119,14 @@ function getNextCalendarForAdmin(month,year){
 		month=1;
 		year++;
 	}
+	getCalendarForAdmin(month,year);
+	/*
+	vis=$('.controller_content').css('visibility');
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
+		$('.controller_content').css('visibility',vis);
 		changeEventsToEventsForAdmin(month,year);
-	});	
+	});
+	*/	
 }
 /*
  * Aggiugne un nuovo calendario nel DB con il nome passato,
@@ -140,4 +163,19 @@ function refresh_cc_for_admin(month,year){
 	$('.calendar_container').load('php/refresh_calendar_container_for_admin.php',{'month':month,'year':year},function(){
 		changeEventsToEventsForAdmin(month,year);
 	});	
-	}		
+	}
+function hs_calendars(){
+	div=$('.controller_content');
+	if(div.css('visibility')=='hidden'){
+		div.hide();
+		div.css('visibility','visible');
+		div.slideToggle('slow');
+	//	$('.controller_hs a img').attr('src','images/hide.png');
+	}else{
+		//$('.controller_hs a img').attr('src','images/show.png');
+		$.when( div.slideToggle('slow')).then(function(){
+			div.css('visibility','hidden');
+		});		
+	}
+//	div.toggle('slow');
+}	

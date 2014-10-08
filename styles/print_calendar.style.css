@@ -5,12 +5,13 @@
 	border: 2px solid black;
 }
 .table_for_print td{
-	padding:9px;
-	padding-bottom:0px;
+	//padding:9px;
+	//padding-bottom:0px;
 }
 .date{
 	width:100px;
 	text-align:center;
+	background-color:#eeeeee;
 }
 .number{
 	font-size:30px;
@@ -28,11 +29,59 @@
 	width:700px;
 	text-align:left;
 	vertical-align:top;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.normal_events{
+	border-collapse: collapse;
+	 border:none;
+	 width:100%;
+}
+
+.normal_events td,.normal_events tr{
+	border:none;
+}
+
+td.time_event{
+	width:150px;
+	vertical-align:top;
+	padding:5px;
+	padding-left:15px;
 	
 }
-.events .giornaliero{
+.event{
+	padding:5px;
+	padding-left:15px;
+}
+.description_event{
+	font-weight:normal;
+	font-style:italic;
+}
+
+.event{
+	overflow:hidden;
+	border-bottom:#000000 solid 2px;
+}
+tr.event{
+	border-bottom:#000000 solid 2px;
+}
+.last,tr.last{
+	border-bottom:none;
+}
+.daily_event_name{
+	font-weight:bold;
+	float:left;
+	// display: block;
+    //white-space:nowrap;
+    font-size:15px;
+    width:150px;
+    margin-right:10px;
+}
+.name_event{
 	font-weight:bold;
 }
-.events .giornaliero,.events .semplice{
-	margin-bottom:9px;
+.daily_event_description{
+	font-style:italic;
+	float:left;
 }

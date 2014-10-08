@@ -70,6 +70,12 @@
 		}
 		return $eventi;	
 	}
+	function getCalendarNameById($id){
+		$query="SELECT calendari.nome FROM calendario_db.calendari WHERE calendari.id=$id";
+		$result = mysql_query($query);
+		$array = mysql_fetch_array($result);
+		return $array['nome'];
+	}
 	/*
 	 * true: calendar exists
 	 * false: calendar doesn't exists

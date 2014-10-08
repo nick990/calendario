@@ -64,13 +64,11 @@ class Calendar{
 	  * Stampa il Calendario in vista mensile
 	  * Utilizzando una tabella 6x7 più le intestazioni
 	  */
-	  function stampa(){
-	  		
-		
+	  function stampa(){		
 		echo '<div class="menu">';
 			$this->stampaSwitchMese("false");
 			$this->stampaController("false");
-		echo '</div>';
+		//echo '</div>'; Il menu è chiuso in stampaController
 		
 		
 	 	echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
@@ -141,8 +139,16 @@ class Calendar{
 	   /*
 	    * Stampa il div per la selezione dei calendari
 	    */
-	   private function stampaController($admin=""){	   		
-	    	echo "<div class='controller'>";
+	   private function stampaController($admin=""){
+	   		
+	    	//echo "<div class='controller'>";
+			echo "<div class='controller_hs'>Calendari";
+				echo "<a href='javascript:hs_calendars();'>";
+					echo "<img src=\"images/show.png\" width=\"16\" height=\"16\">";
+				echo "</a>";
+			echo "</div>"; //chiudo controller_hs
+			echo "</div>"; //chiudo il menu
+			echo "<div class='controller_content'>";
 	    		$query="SELECT * FROM calendario_db.calendari";
 				$result = mysql_query($query);
 				while ($array = mysql_fetch_array($result))
@@ -155,7 +161,9 @@ class Calendar{
 					echo $ck_str;
 					
 				}
-	    	echo "</div>";
+			//echo "</div>";
+	    	echo "</div>"; //chiudo controller_content
+	    	
 	    }
 	   
 	 
@@ -169,7 +177,6 @@ class Calendar{
 			echo '<div id="new_cal_error"></div>';
 		echo '</div>';
 		echo '<div class="calendars_manager">';
-			//connettiDB("127.0.0.1","calendario_db","root","");
 			$calendars=extractCalendars();
 			while ($array = mysql_fetch_array($calendars))
 			{
@@ -194,7 +201,7 @@ class Calendar{
 		echo '<div class="menu">';
 			$this->stampaSwitchMese("true");
 			$this->stampaController("true");
-		echo '</div>';
+	//echo '</div>';
 		echo '<table class="calendar_table"><tr class="heading_tr"><td>LUN</td><td>MAR</td><td>MER</td><td>GIO</td><td>VEN</td><td>SAB</td><td>DOM</td></tr>';
 	  	for($i=0;$i<count($this->giorni);$i++){
 	  		echo '<td>';

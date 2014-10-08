@@ -19,8 +19,51 @@ class Event{
 		$this->data_inizio_ts=strtotime($this->data_inizio);
 		$this->data_fine_ts=strtotime($this->data_fine);
 	}
-	function stampa_for_print_calendar(){
-		echo '<div class="'.$this->tipo.'">';
+	function stampa_for_print_calendar($descr_print,$last){
+		if($this->tipo=='giornaliero'){
+			if($last==true)
+				echo '<div class="event last">';
+			else 
+				echo '<div class="event">';
+				echo '<div class="daily_event_name">';
+								echo $this->nome;
+							echo '</div>';
+					
+						if($descr_print==true){
+							
+							echo '<div class="daily_event_description">';
+								echo $this->descrizione;
+							echo '</div>';
+						
+						}
+					
+			echo '</div>';
+		}
+		if($this->tipo=='semplice'){
+				if($last==true)
+					echo '<tr class="event last">';
+				else 
+					echo '<tr class="event">';
+				
+					echo '<td class="time_event">';
+						$ora_inizio_format=date('H:i',$this->data_inizio_ts);
+						$ora_fine_format=date('H:i',$this->data_fine_ts);
+						echo $ora_inizio_format.' - '.$ora_fine_format.' ';
+					echo '</td>';
+					echo '<td class="name_event">';
+						echo $this->nome;
+						if($descr_print==true){
+							echo '<div class="description_event">';
+								echo $this->descrizione;
+							echo '</div>';
+						}
+					echo '</td>';
+				echo '</tr>';
+			
+		}
+		
+		/*
+		echo '<div class="event">';
 			if($this->tipo=='semplice'){
 				$ora_inizio_format=date('H:i',$this->data_inizio_ts);
 				$ora_fine_format=date('H:i',$this->data_fine_ts);
@@ -28,7 +71,10 @@ class Event{
 			}
 			echo $this->nome;
 		echo '</div>';
-	
+		*/
+	}
+	function get_tipo(){
+		return $this->tipo;
 	}
 	function stampa(){
 		switch($this->tipo){

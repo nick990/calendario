@@ -44,7 +44,7 @@ class Day{
 	
 	
 	
-	function stampa_for_print_calendar($calendar_id){
+	function stampa_for_print_calendar($calendar_id,$description){
 		global $giorni_completi,$mesi_completi;
 		echo '<td class="date">';
 			echo '<div class="number">';
@@ -61,10 +61,28 @@ class Day{
 			//svuoto l'array eventi nel caso fosse stato riempito nel costruttore
 			$this->eventi=array();
 			$this->eventi=extractEventsByCalendarId($this->data['mday'],++$this->data['mon'],$this->data['year'],$calendar_id);
-			if(count($this->eventi)!=0)
-				foreach ($this->eventi as $evento) {
-					$evento->stampa_for_print_calendar();
+			//Stampo solo gli eventi gioranlieri
+			if(count($this->eventi)!=0){
+				for($i=0;$i<count($this->eventi);$i++){
+					$last=false;
+					if($i==count($this->eventi)-1)
+						$last=true;
+					$evento=$this->eventi[$i];
+					if($evento->get_tipo()=="giornaliero")
+						$evento->stampa_for_print_calendar($description,$last);
 				}
+			//Stampo gli eventi semplici
+				echo '<table class="normal_events">';
+					for($i=0;$i<count($this->eventi);$i++){
+						$last=false;
+						if($i==count($this->eventi)-1)
+							$last=true;
+						$evento=$this->eventi[$i];
+						if($evento->get_tipo()=="semplice")
+							$evento->stampa_for_print_calendar($description,$last);
+					}
+				echo '</table>';
+			}
 		echo '</td>';
 	}
 	

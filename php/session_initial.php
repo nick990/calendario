@@ -19,7 +19,5 @@
 		while ($array = mysql_fetch_array($result))
 		{
 			$_SESSION['cals_id'][]=$array['id'];
-		}
-	
-	
+		}	
 ?>

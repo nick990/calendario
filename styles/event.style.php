@@ -63,8 +63,14 @@
 .popup_evento_nome{
 	font-weight:bold;
 	/*edf7ef*/
+	//border-bottom:3px solid #eef4ed;
+	padding:5px;
+}
+.popup_calendario_nome{
 	border-bottom:3px solid #eef4ed;
 	padding:5px;
+	padding-top:0px;
+	font-size:12px;
 }
 .popup_evento_descrizione{
 	border:3px solid #eef4ed;

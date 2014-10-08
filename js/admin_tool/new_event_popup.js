@@ -194,13 +194,13 @@ function set_errors_time(on_submit){
 	var time2=$('#time2');
 	if(type=='semplice'){		
 		if((time1.val().length!=0&&!check_time(time1.val()))||(time2.val().length!=0&&!check_time(time2.val()))){
-			$('#error3').text('Inserire ora nel formato corretto');
+			$('#error3').text('Inserire ora nel formato corretto (hh:mm)');
 			error=true;
 		}else $('#error3').text('');
 		if(time1.val().length==0||time2.val().length==0){
 			error=true;
 			if(on_submit)
-				$('#error3').text('Inserire ora nel formato corretto');
+				$('#error3').text('Inserire ora nel formato corretto (hh:mm)');
 		}
 	}
 	return  error;
