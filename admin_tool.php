@@ -15,11 +15,11 @@
 			require 'php/link_CSS.php';
 			if (isset($_SESSION['user_id'])&&empty($_SESSION['admin'])) {
 		  		echo "Solo gli utenti amministratori possono accedere a questa pagina";
-				echo "<a id='logout_button' href='javascript:logout()'>LOGOUT</a>";
+				echo "</br>Ritorna al <a id='logout_button' href='javascript:logout()'>LOGIN</a>";
 		  		exit;
 			}
 			if (empty($_SESSION['user_id'])) {
-		  		echo "Devi effettuare il <a href='login_page.php'>login</a> per accedere a questa pagina";
+		  		echo "Devi effettuare il <a href='login_page.php'>login</a> come amministratore per accedere a questa pagina";
 		  		exit;
 			}	
 		?>

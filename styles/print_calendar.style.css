@@ -29,8 +29,8 @@
 	width:700px;
 	text-align:left;
 	vertical-align:top;
-	padding-top:10px;
-	padding-bottom:10px;
+	//padding-top:10px;
+	//padding-bottom:10px;
 }
 
 .normal_events{
@@ -46,25 +46,27 @@
 td.time_event{
 	width:150px;
 	vertical-align:top;
-	padding:5px;
+	padding:15px;
 	padding-left:15px;
-	
+
 }
 .event{
-	padding:5px;
+	padding:15px;
 	padding-left:15px;
 }
 .description_event{
 	font-weight:normal;
 	font-style:italic;
+	
 }
 
 .event{
 	overflow:hidden;
-	border-bottom:#000000 solid 2px;
+	border-bottom:#777777 solid 2px;
+	//padding-bottom:10px;
 }
 tr.event{
-	border-bottom:#000000 solid 2px;
+	border-bottom:#777777 solid 2px;
 }
 .last,tr.last{
 	border-bottom:none;
@@ -85,3 +87,15 @@ tr.event{
 	font-style:italic;
 	float:left;
 }
+#error1,#error2{
+	height:20px;
+	padding:5px;
+	color:#d64242;
+}
+#title_calendar{
+	font-size:45px;
+	width:810px;
+	text-align:center;
+}
+
+

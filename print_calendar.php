@@ -11,26 +11,25 @@
 <?php
 	require_once('php/utils.php');
 	require_once('php/DBfunctions.php');
-	connettiDB("localhost","calendario_db","root",""); 
-	/*$gg1=$_POST['gg1'];
-	$mm1=$_POST['mm1'];
-	$aaaa1=$_POST['aaaa1'];
+	connettiDB("localhost","calendario_db","root","");
+	$date1=$_POST['date1'];
+	$date2=$_POST['date2'];
+	$title=$_POST['title'];
+	$calendar_id=$_POST['calendar_select'];
+	$description = isset($_POST['description']) ? true : false;
 	
-	$gg2=$_POST['gg2'];
-	$mm2=$_POST['mm2'];
-	$aaaa2=$_POST['aaaa2'];
-	*/
-	$gg1="01";
-	$mm1="07";
-	$aaaa1="2014";
+	echo '<div id="title_calendar">'.$title.'</div>';
 	
-	$gg2="03";
-	$mm2="07";
-	$aaaa2="2014";	
+	$date1_pieces = explode(" ",$date1);
+	$date2_pieces = explode(" ",$date2);
 	
-	$calendar_id=5;
+	$gg1=$date1_pieces[0];
+	$mm1=array_search($date1_pieces[1], $mesi)+1;
+	$aaaa1=$date1_pieces[2];
 	
-	$description=true;
+	$gg2=$date2_pieces[0];
+	$mm2=array_search($date2_pieces[1], $mesi)+1;
+	$aaaa2=$date2_pieces[2];
 	
 	$days=get_days_in_range($gg1,$mm1,$aaaa1,$gg2,$mm2,$aaaa2);
 	
@@ -47,11 +46,7 @@
 </body>
 <script type="text/javascript">
 	$( document ).ready(function() {
-	/*	$('.table_for_print tr .event').each(function(i) {
-			if(i%2==0){
-				$(this).css('background-color','#eeeeee');
-			}
-		});*/
+	
 		
 		
 		

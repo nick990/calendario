@@ -17,12 +17,13 @@ if (mysql_num_rows($result) > 0)
   $row = mysql_fetch_assoc($result);
   // effettuo la comparazione della password digitata con quella salvata nel DB
   if (strcmp($row['Password'], $password) == 0) {
-    // in caso di successo creo la sesione
+    // in caso di successo creo la sessione
     $_SESSION['user_id'] = $row['id'];
 	if($row['Ruolo']==1){
 		$_SESSION['admin']=true;
 		
 	}
+	
     // e stampo 1 (che identifica il successo)
     echo 1;
   }else{
